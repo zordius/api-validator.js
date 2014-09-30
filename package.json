@@ -35,10 +35,13 @@
   },
   "main": "./api-validator.js",
   "bin": {
-      "apivalidator": "cmd.js"
+    "apivalidator": "cmd.js"
   },
   "devDependencies": {
     "chai": "*",
+    "grunt": "0.4.1",
+    "grunt-cli": "0.1.13",
+    "grunt-es6-module-transpiler": "0.6.0",
     "istanbul": "*",
     "jsonlint": "*",
     "mocha": "*"
