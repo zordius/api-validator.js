@@ -1,1 +1,0 @@
-{"version":3,"file":"api-validator.js","sources":["api-validator.js"],"names":[],"mappings":";;;qCAAe,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE;IACxC","sourcesContent":["export default function APIValidator () {\n};\n"]}
