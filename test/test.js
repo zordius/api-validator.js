@@ -2,7 +2,19 @@
 
 var assert = require('assert'),
     AV = require('../api-validator.js'),
-    SV = AV.singleValidator;
+    SV = AV.singleValidator,
+
+    testSchema1 = {
+        '$schema': 'http://json-schema.org/draft-04/schema#',
+        'type': 'object',
+        required: ['abc', 'def'],
+        properties: {
+            abc: {
+                type: 'string'
+            },
+            def: {}
+        }
+    };
 
 describe('singleValidator', function () {
     it('should be failed as internal error', function (done) {
@@ -15,19 +27,18 @@ describe('singleValidator', function () {
         done();
     });
 
-    it('should be passed', function (done) {
-        assert.equal(null, SV({
-            data: {abc: 'dev'},
-            schema: {
-                '$schema': 'http://json-schema.org/draft-04/schema#',
-                'type': 'object',
-                required: ['abc'],
-                properties: {
-                    abc: {
-                        type: 'string'
-                    }
-                }
-            }
+    it('should be passed by the schema', function (done) {
+        assert.deepEqual(null, SV({
+            data: {abc: 'dev', def: 1},
+            schema: testSchema1
+        }));
+        done();
+    });
+
+    it('should be failed by the scema', function (done) {
+        assert.deepEqual({"error":[{"type":"validation","target":"def","rule":{"required":true}},{"type":"validation","target":"abc","rule":{"type":"string"}}]}, SV({
+            data: {abc: 1},
+            schema: testSchema1
         }));
         done();
     });

@@ -3,7 +3,14 @@
 var lodash = require('lodash'),
     jjv = require('jjv'),
     REQ = require('request'),
-    when = require('when');
+    when = require('when'),
+    normalizeError = function (V, I) {
+        return {
+            type: 'validation',
+            target: I,
+            rule: V
+        };
+    };
     
 module.exports = {
     ApiValidator: function (list, cb) {
@@ -13,7 +20,7 @@ module.exports = {
         lodash.map(list, this.singleValidator, this);
     },
     singleValidator: function (D) {
-        var E;
+        var E, err;
 
         if (!D) {
             return {
@@ -34,7 +41,8 @@ module.exports = {
         }
 
         E = jjv();
+        err = E.validate(D.schema, D.data);
 
-        return E.validate(D.schema, D.data);
+        return err ? {error: lodash.map(err.validation, normalizeError)} : null;
     }
 }
