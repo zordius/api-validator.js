@@ -1,17 +1,19 @@
 module.exports = function (grunt) {
     grunt.initConfig({
-        transpile: {
-            main: {
-                type: 'cjs',
-                expand: true,
-                files: [{
-                    src: ['src/*.js'],
-                    dest: '.'
-                }]
-            } 
-        }
+        watch: {
+            files: ['src/api-validator.js'],
+            tasks: ['shell:buildCJS']
+        },
+        shell: {
+            makeMojitoShaker: {
+                command: 'npm run-script build_cjs',
+                options: {
+                    failOnError: true
+                }
+            }
+        },
     });
 
-    grunt.loadNpmTasks('grunt-es6-module-transpiler');
+    grunt.loadNpmTasks('grunt-watch');
     grunt.registerTask('default', ['transpile']);
 };
