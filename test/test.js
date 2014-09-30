@@ -5,6 +5,11 @@ var assert = require('assert'),
     SV = AV.singleValidator;
 
 describe('singleValidator', function () {
+    it('should be failed as internal error', function (done) {
+        assert.deepEqual({"error":[{"type":"internal","message":"No input for singleValidator"}]}, SV());
+        done();
+    });
+
     it('should be passed', function (done) {
         assert.equal(null, SV({
             data: {abc: 'dev'},
