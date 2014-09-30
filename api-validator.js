@@ -3,13 +3,16 @@
 var lodash = require('lodash'),
     jjv = require('jjv'),
     REQ = require('request'),
-    ApiValidator = function (list) {
-        lodash.map(list, singleValidator);
+    when = require('when');
+    
+module.exports = {
+    ApiValidator: function (list, cb) {
+        lodash.map(list, this.promiseValidator, this);
     },
-    loopValidator = function (list) {
+    loopValidator: function (list) {
+        lodash.map(list, this.singleValidator, this);
     },
-    singleValidator = function (data) {
+    singleValidator: function (data) {
         
-    };
-
-module.exports = ApiValidator;
+    }
+}

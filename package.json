@@ -22,7 +22,8 @@
   "dependencies": {
     "jjv": "1.0.2",
     "lodash": "2.4.1",
-    "request": "2.31.0"
+    "request": "2.31.0",
+    "when": "3.2.2"
   },
   "scripts": {
     "build_std": "browserify api-validator.js -s APIValidator -o dist/apivalidator.js",
