@@ -6,11 +6,11 @@ var assert = require('assert'),
 
 describe('singleValidator', function () {
     it('should be passed', function (done) {
-        assert.equal(true, SV({
+        assert.equal(null, SV({
             data: {abc: 'dev'},
             schema: {
-                "$schema": "http://json-schema.org/draft-04/schema#",
-                type: 'object',
+                '$schema': 'http://json-schema.org/draft-04/schema#',
+                'type': 'object',
                 required: ['abc'],
                 properties: {
                     abc: {
@@ -19,5 +19,6 @@ describe('singleValidator', function () {
                 }
             }
         }));
+        done();
     });
 });
