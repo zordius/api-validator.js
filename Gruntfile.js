@@ -4,14 +4,14 @@ module.exports = function (grunt) {
             main: {
                 type: 'cjs',
                 expand: true,
-                files: [
+                files: [{
                     src: ['src/*.js'],
                     dest: '.'
-                ]
+                }]
             } 
         }
     });
 
     grunt.loadNpmTasks('grunt-es6-module-transpiler');
-    grunt.registerTask('build', ['clean', 'transpile']);
+    grunt.registerTask('default', ['transpile']);
 };
