@@ -10,6 +10,11 @@ describe('singleValidator', function () {
         done();
     });
 
+    it('should be failed as input error', function (done) {
+        assert.deepEqual(SV({"error":[{"type":"input","message":"No schema in input for singleValidator"}]}));
+        done();
+    });
+
     it('should be passed', function (done) {
         assert.equal(null, SV({
             data: {abc: 'dev'},
