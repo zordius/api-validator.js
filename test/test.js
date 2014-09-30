@@ -11,7 +11,7 @@ describe('singleValidator', function () {
     });
 
     it('should be failed as input error', function (done) {
-        assert.deepEqual(SV({"error":[{"type":"input","message":"No schema in input for singleValidator"}]}));
+        assert.deepEqual({"error":[{"type":"input","message":"No schema in input for singleValidator"}]}, SV({}));
         done();
     });
 
