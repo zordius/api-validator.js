@@ -14,15 +14,30 @@ AValidator = {
             rule: V
         };
     },
-    ApiValidator: function (list, cb) {
-        lodash.map(list, this.promiseValidator, this);
+    exec: function (list, cb) {
+        lodash.map(list, this.promise, this);
+    },
+    request: function (D, cb) {
+        if (!lodash.isFunction(cb)) {
+            throw {
+                error: [{
+                    'type': 'internal',
+                    message: 'No input for AValidator.request'
+                }]
+            };
+        }
+
+        if (!D.url) {
+        }
+    },
+    promise: function (D) {
     },
     all: function (list) {
         if (!lodash.isArray(list)) {
             return {
                 error: [{
                     'type': 'input',
-                    message: 'Input is not array for all'
+                    message: 'Input is not array for AValidator.all'
                 }]
             };
         }
@@ -36,7 +51,7 @@ AValidator = {
             return {
                 error: [{
                     'type': 'internal',
-                    message: 'No input for one'
+                    message: 'No input for AValidator.one'
                 }]
             };
         }
@@ -45,7 +60,7 @@ AValidator = {
             return {
                 error: [{
                     'type': 'input',
-                    message: 'No schema in input for one'
+                    message: 'No schema in input for AValidator.one'
                 }]
             };
         }

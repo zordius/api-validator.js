@@ -17,12 +17,12 @@ var assert = require('assert'),
 
 describe('Validator.one', function () {
     it('should be failed as internal error', function (done) {
-        assert.deepEqual({"error":[{"type":"internal","message":"No input for one"}]}, AV.one());
+        assert.deepEqual({"error":[{"type":"internal","message":"No input for AValidator.one"}]}, AV.one());
         done();
     });
 
     it('should be failed as input error', function (done) {
-        assert.deepEqual({"error":[{"type":"input","message":"No schema in input for one"}]}, AV.one({}));
+        assert.deepEqual({"error":[{"type":"input","message":"No schema in input for AValidator.one"}]}, AV.one({}));
         done();
     });
 
@@ -45,7 +45,7 @@ describe('Validator.one', function () {
 
 describe('Validator.all', function () {
     it('should be failed as input error', function (done) {
-        assert.deepEqual({"error":[{"type":"input","message":"Input is not array for all"}]}, AV.all({}));
+        assert.deepEqual({"error":[{"type":"input","message":"Input is not array for AValidator.all"}]}, AV.all({}));
         done();
     });
 
