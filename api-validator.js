@@ -45,11 +45,20 @@ AValidator = {
             });
         }
 
-        REQ({url: D.url}, function (E, R, B) {
+        REQ({url: D.url, json: true}, function (E, R, B) {
             if (E) {
                 return cb({
+                    error: [{
+                        'type': 'request',
+                        message: E
+                        response: R
+                        body: B
+                    }]
                 });
             }
+
+            D.data = B;
+            cb(AValidator.one(D));
         });
     },
     promise: function (D) {
