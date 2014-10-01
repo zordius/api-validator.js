@@ -3,6 +3,7 @@
 var assert = require('assert'),
     AV = require('../api-validator.js'),
     SV = AV.singleValidator,
+    LV = AV.loopValidator,
 
     testSchema1 = {
         '$schema': 'http://json-schema.org/draft-04/schema#',
@@ -40,6 +41,13 @@ describe('singleValidator', function () {
             data: {abc: 1},
             schema: testSchema1
         }));
+        done();
+    });
+});
+
+describe('loopValidator', function () {
+    it('should be failed as input error', function (done) {
+        assert.deepEqual({"error":[{"type":"input","message":"Input is not array for loopValidator"}]}, LV({}));
         done();
     });
 });

@@ -17,7 +17,16 @@ module.exports = {
         lodash.map(list, this.promiseValidator, this);
     },
     loopValidator: function (list) {
-        lodash.map(list, this.singleValidator, this);
+        if (!lodash.isArray(list)) {
+            return {
+                error: [{
+                    'type': 'input',
+                    message: 'Input is not array for loopValidator'
+                }]
+            };
+        }
+
+        return lodash.map(list, this.singleValidator, this);
     },
     singleValidator: function (D) {
         var E, err;
