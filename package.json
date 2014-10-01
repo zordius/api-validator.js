@@ -27,9 +27,9 @@
   },
   "scripts": {
     "build_std": "browserify api-validator.js -s APIValidator -o dist/apivalidator.js",
-    "build_req": "browserify api-validator.js -r ../apivalidator -o dist/apivalidator-req.js",
+    "build_req": "browserify api-validator.js -r ../api-validator.js -o dist/apivalidator-req.js",
     "build_dbg": "browserify api-validator.js -d -s APIValidator -o dist/apivalidator-dbg.js",
-    "build_tst": "browserify test/test.js -x ../apivalidator -o dist/browserTest.js",
+    "build_tst": "browserify test/test.js -x ../api-validator.js -o dist/browserTest.js",
     "build_min": "uglifyjs dist/apivalidator.js -c -o dist/apivalidator-min.js",
     "coverage": "istanbul cover -- _mocha -R spec",
     "lint": "jshint api-validator.js",
