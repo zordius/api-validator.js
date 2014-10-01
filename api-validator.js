@@ -4,38 +4,38 @@ var lodash = require('lodash'),
     jjv = require('jjv'),
     REQ = require('request'),
     when = require('when'),
-    normalizeError = function (V, I) {
+
+AValidator = {
+    normalizeError: function (V, I) {
         return {
             type: 'validation',
             target: I,
             rule: V
         };
-    };
-    
-module.exports = {
+    },
     ApiValidator: function (list, cb) {
         lodash.map(list, this.promiseValidator, this);
     },
-    loopValidator: function (list) {
+    all: function (list) {
         if (!lodash.isArray(list)) {
             return {
                 error: [{
                     'type': 'input',
-                    message: 'Input is not array for loopValidator'
+                    message: 'Input is not array for all'
                 }]
             };
         }
 
-        return lodash.map(list, this.singleValidator, this);
+        return lodash.map(list, this.one, this);
     },
-    singleValidator: function (D) {
+    one: function (D) {
         var E, err;
 
         if (!D) {
             return {
                 error: [{
                     'type': 'internal',
-                    message: 'No input for singleValidator'
+                    message: 'No input for one'
                 }]
             };
         }
@@ -44,7 +44,7 @@ module.exports = {
             return {
                 error: [{
                     'type': 'input',
-                    message: 'No schema in input for singleValidator'
+                    message: 'No schema in input for one'
                 }]
             };
         }
@@ -52,6 +52,8 @@ module.exports = {
         E = jjv();
         err = E.validate(D.schema, D.data);
 
-        return err ? {error: lodash.map(err.validation, normalizeError)} : null;
+        return err ? {error: lodash.map(err.validation, this.normalizeError, this)} : null;
     }
 }
+
+module.exports = AValidator;

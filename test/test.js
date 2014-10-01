@@ -2,8 +2,6 @@
 
 var assert = require('assert'),
     AV = require('../api-validator.js'),
-    SV = AV.singleValidator,
-    LV = AV.loopValidator,
 
     testSchema1 = {
         '$schema': 'http://json-schema.org/draft-04/schema#',
@@ -17,19 +15,19 @@ var assert = require('assert'),
         }
     };
 
-describe('singleValidator', function () {
+describe('Validator.one', function () {
     it('should be failed as internal error', function (done) {
-        assert.deepEqual({"error":[{"type":"internal","message":"No input for singleValidator"}]}, SV());
+        assert.deepEqual({"error":[{"type":"internal","message":"No input for one"}]}, AV.one());
         done();
     });
 
     it('should be failed as input error', function (done) {
-        assert.deepEqual({"error":[{"type":"input","message":"No schema in input for singleValidator"}]}, SV({}));
+        assert.deepEqual({"error":[{"type":"input","message":"No schema in input for one"}]}, AV.one({}));
         done();
     });
 
     it('should be passed by the schema', function (done) {
-        assert.deepEqual(null, SV({
+        assert.deepEqual(null, AV.one({
             data: {abc: 'dev', def: 1},
             schema: testSchema1
         }));
@@ -37,7 +35,7 @@ describe('singleValidator', function () {
     });
 
     it('should be failed by the scema', function (done) {
-        assert.deepEqual({"error":[{"type":"validation","target":"def","rule":{"required":true}},{"type":"validation","target":"abc","rule":{"type":"string"}}]}, SV({
+        assert.deepEqual({"error":[{"type":"validation","target":"def","rule":{"required":true}},{"type":"validation","target":"abc","rule":{"type":"string"}}]}, AV.one({
             data: {abc: 1},
             schema: testSchema1
         }));
@@ -45,9 +43,23 @@ describe('singleValidator', function () {
     });
 });
 
-describe('loopValidator', function () {
+describe('Validator.all', function () {
     it('should be failed as input error', function (done) {
-        assert.deepEqual({"error":[{"type":"input","message":"Input is not array for loopValidator"}]}, LV({}));
+        assert.deepEqual({"error":[{"type":"input","message":"Input is not array for all"}]}, AV.all({}));
+        done();
+    });
+
+    it('should return array of validation results', function (done) {
+        assert.deepEqual([
+            null,
+            {"error":[{"type":"validation","target":"def","rule":{"required":true}}]}
+        ], AV.all([{
+            data: {abc: 'dev', def: 1},
+            schema: testSchema1
+        }, {
+            data: {abc: 'ok'},
+            schema: testSchema1
+        }]));
         done();
     });
 });
