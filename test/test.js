@@ -139,4 +139,13 @@ describe('Validator.request', function () {
 });
 
 describe('Validator.promise', function () {
+    before(setupFakeHTTP);
+    after(cleanFakeHTTP);
+
+    it('should be failed as input error', function (done) {
+        AV.promise().then(function (E) {
+            assert.deepEqual({"error":[{"type":"input","message":"No input for AValidator.request"}]}, E);
+            done();
+        });
+    });
 });
