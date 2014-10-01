@@ -2,6 +2,7 @@
 
 var assert = require('assert'),
     AV = require('../api-validator.js'),
+    nock = require('nock'),
     baseurl = 'http://fake.host',
 
     PATHS = {
@@ -11,10 +12,14 @@ var assert = require('assert'),
     },
 
     setupFakeHTTP = function () {
-        require('nock')(baseurl)
+        nock(baseurl)
         .get(PATHS.NULL).reply(200, '')
         .get(PATHS.ABC123).reply(200, {abc: 123})
         .get(PATHS.ABCDEF).reply(200, {abc: '123', def: 0});
+    },
+
+    cleanFakeHTTP = function () {
+        nock.cleanAll();
     },
 
     testSchema1 = {
@@ -80,6 +85,7 @@ describe('Validator.all', function () {
 
 describe('Validator.request', function () {
     before(setupFakeHTTP);
+    after(cleanFakeHTTP);
 
     it('should be failed as input error when no callback', function (done) {
         try {
@@ -130,4 +136,7 @@ describe('Validator.request', function () {
             done();
         });
     });
+});
+
+describe('Validator.promise', function () {
 });
