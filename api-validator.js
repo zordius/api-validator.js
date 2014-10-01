@@ -45,13 +45,15 @@ AValidator = {
             });
         }
 
-        REQ({url: D.url, json: true}, function (E, R, B) {
+        D.json = true;
+
+        REQ(D, function (E, R, B) {
             if (E) {
                 return cb({
                     error: [{
                         'type': 'request',
-                        message: E
-                        response: R
+                        message: E,
+                        response: R,
                         body: B
                     }]
                 });

@@ -43,7 +43,8 @@
     "chai": "*",
     "istanbul": "*",
     "jsonlint": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "nock": "0.28.3"
   },
   "optionalDependencies": {
     "browserify": "*",
