@@ -64,7 +64,7 @@ AValidator = {
         });
     },
     promise: function (D) {
-        return when.promise(function (resolve, reject) {
+        return when.promise(function (resolve) {
             AValidator.request(D, function (E) {
                 resolve(E);
             });
