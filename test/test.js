@@ -5,12 +5,16 @@ var assert = require('assert'),
     baseurl = 'http://fake.host',
 
     PATHS = {
-        ABC123: '/getJsonAbc123'
+        NULL: '/getNull',
+        ABC123: '/getJsonAbc123',
+        ABCDEF: '/getJsonAbcDef'
     },
 
     setupFakeHTTP = function () {
         require('nock')(baseurl)
-        .get(PATHS.ABC123).reply(200, {abc: 123});
+        .get(PATHS.NULL).reply(200, '')
+        .get(PATHS.ABC123).reply(200, {abc: 123})
+        .get(PATHS.ABCDEF).reply(200, {abc: '123', def: 0});
     },
 
     testSchema1 = {
@@ -106,5 +110,24 @@ describe('Validator.request', function () {
             done();
         });
     });
-    
+
+    it('should be failed when response null', function (done) {
+        AV.request({
+            url: baseurl + PATHS.NULL,
+            schema: testSchema1
+        }, function (E) {
+            assert.deepEqual({"error":[{"type":"validation","target":"type","rule":"object"}]}, E);
+            done();
+        });
+    });
+
+    it('should be passed', function (done) {
+        AV.request({
+            url: baseurl + PATHS.ABCDEF,
+            schema: testSchema1
+        }, function (E) {
+            assert.deepEqual(null, E);
+            done();
+        });
+    });
 });

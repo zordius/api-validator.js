@@ -64,6 +64,11 @@ AValidator = {
         });
     },
     promise: function (D) {
+        return when.promise(function (resolve, reject) {
+            AValidator.request(D, function (E) {
+                resolve(E);
+            });
+        });
     },
     all: function (list) {
         if (!lodash.isArray(list)) {
