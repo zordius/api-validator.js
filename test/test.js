@@ -3,7 +3,9 @@
 var assert = require('assert'),
     AV = require('../api-validator.js'),
     nock = require('nock'),
+
     baseurl = 'http://fake.host',
+    NoConnectURL = 'http://localhost:1/',
 
     PATHS = {
         NULL: '/getNull',
@@ -111,7 +113,7 @@ describe('Validator.request', function () {
     });
 
     it('should be failed as request error when connection refused', function (done) {
-        AV.request({url: 'http://localhost:1/'}, function (E) {
+        AV.request({url: NoConnectURL}, function (E) {
             assert.deepEqual({ error: [ { type: 'request', message: 'connect ECONNREFUSED', response: undefined, body: undefined } ] }, E);
             done();
         });
@@ -145,6 +147,26 @@ describe('Validator.promise', function () {
     it('should be failed as input error', function (done) {
         AV.promise().then(function (E) {
             assert.deepEqual({"error":[{"type":"input","message":"No input for AValidator.request"}]}, E);
+            done();
+        });
+    });
+});
+
+describe('Validator.promiseAll', function () {
+    before(setupFakeHTTP);
+    after(cleanFakeHTTP);
+
+    it('should handle all validation', function (done) {
+        AV.promiseAll([{
+            url: baseurl + PATHS.ABCDEF,
+            schema: testSchema1
+        },{
+            url: NoConnectURL
+        }]).then(function (E) {
+            assert.deepEqual([
+                null,
+                { error: [ { type: 'request', message: 'connect ECONNREFUSED', response: undefined, body: undefined } ] }
+            ], E);
             done();
         });
     });

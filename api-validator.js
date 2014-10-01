@@ -14,8 +14,8 @@ AValidator = {
             rule: V
         };
     },
-    exec: function (list, cb) {
-        lodash.map(list, this.promise, this);
+    promiseAll: function (list, cb) {
+        return when.all(lodash.map(list, AValidator.promise));
     },
     request: function (D, cb) {
         if (!lodash.isFunction(cb)) {
@@ -80,7 +80,7 @@ AValidator = {
             };
         }
 
-        return lodash.map(list, this.one, this);
+        return lodash.map(list, AValidator.one);
     },
     one: function (D) {
         var E, err;
@@ -106,7 +106,7 @@ AValidator = {
         E = jjv();
         err = E.validate(D.schema, D.data);
 
-        return err ? {error: lodash.map(err.validation, this.normalizeError, this)} : null;
+        return err ? {error: lodash.map(err.validation, AValidator.normalizeError)} : null;
     }
 };
 
