@@ -82,4 +82,13 @@ describe('Validator.request', function () {
         }
         done();
     });
+
+    it('should be failed as input error when no input.url', function (done) {
+        try {
+            AV.request({}, function () {});
+        } catch (E) {
+            assert.deepEqual({ error: [ { type: 'input', message: 'No input.url for AValidator.request' } ] }, E);
+        }
+        done();
+    });
 });
