@@ -18,15 +18,6 @@ AValidator = {
         lodash.map(list, this.promise, this);
     },
     request: function (D, cb) {
-        if (!D) {
-            throw {
-                error: [{
-                    'type': 'input',
-                    message: 'No input for AValidator.request'
-                }]
-            };
-        }
-
         if (!lodash.isFunction(cb)) {
             throw {
                 error: [{
@@ -36,14 +27,30 @@ AValidator = {
             };
         }
 
+        if (!D) {
+            return cb({
+                error: [{
+                    'type': 'input',
+                    message: 'No input for AValidator.request'
+                }]
+            });
+        }
+
         if (!D.url) {
-            throw {
+            return cb({
                 error: [{
                     'type': 'input',
                     message: 'No input.url for AValidator.request'
                 }]
-            };
+            });
         }
+
+        REQ({url: D.url}, function (E, R, B) {
+            if (E) {
+                return cb({
+                });
+            }
+        });
     },
     promise: function (D) {
     },
