@@ -14,7 +14,7 @@ AValidator = {
             rule: V
         };
     },
-    promiseAll: function (list, cb) {
+    promiseAll: function (list) {
         return when.all(lodash.map(list, AValidator.promise));
     },
     request: function (D, cb) {
