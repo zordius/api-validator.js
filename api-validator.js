@@ -5,6 +5,7 @@ var lodash = require('lodash'),
     jjv = require('jjv'),
     REQ = require('request'),
     when = require('when'),
+    fs = require('fs'),
 
 AValidator = {
     normalizeError: function (V, I) {
@@ -13,6 +14,31 @@ AValidator = {
             target: I,
             rule: V
         };
+    },
+    findSchemaFiles: function (base, match) {
+        var F = [],
+            D = base || process.cwd();
+
+        try {
+            fs.readdirSync(D).forEach(function (N) {
+                var FN = D + '/' + N,
+                    S = fs.statSync(FN);
+
+                if (S.isDirectory()) {
+                    lodash.map(AValidator.findSchemaFiles(FN), function (O) {
+                        F.push(O);
+                    });
+                    return;
+                }
+
+                if (N.match(match || /(schema)?\.json$/)) {
+                    F.push(FN);
+                }
+            });
+        } catch (E) {
+        }
+
+        return F;
     },
     promiseAll: function (list) {
         return when.all(lodash.map(list, AValidator.promise));

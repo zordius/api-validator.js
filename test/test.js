@@ -171,3 +171,12 @@ describe('Validator.promiseAll', function () {
         });
     });
 });
+
+describe('Validator.findSchemaFiles', function () {
+    it('should search for only matched pattern under the base directory', function (done) {
+        assert.deepEqual([
+            'test/schemas/test.json'
+        ], AV.findSchemaFiles('test/schemas', /test.json/));
+        done();
+    });
+});
