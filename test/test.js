@@ -63,3 +63,23 @@ describe('Validator.all', function () {
         done();
     });
 });
+
+describe('Validator.request', function () {
+    it('should be failed as input error', function (done) {
+        try {
+            AV.request();
+        } catch (E) {
+            assert.deepEqual({ error: [ { type: 'input', message: 'No input for AValidator.request' } ] }, E);
+        }
+        done();
+    });
+
+    it('should be failed as input error when no callback', function (done) {
+        try {
+            AV.request({});
+        } catch (E) {
+            assert.deepEqual({ error: [ { type: 'input', message: 'No callback for AValidator.request' } ] }, E);
+        }
+        done();
+    });
+});

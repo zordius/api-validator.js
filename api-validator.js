@@ -18,16 +18,31 @@ AValidator = {
         lodash.map(list, this.promise, this);
     },
     request: function (D, cb) {
-        if (!lodash.isFunction(cb)) {
+        if (!D) {
             throw {
                 error: [{
-                    'type': 'internal',
+                    'type': 'input',
                     message: 'No input for AValidator.request'
                 }]
             };
         }
 
+        if (!lodash.isFunction(cb)) {
+            throw {
+                error: [{
+                    'type': 'input',
+                    message: 'No callback for AValidator.request'
+                }]
+            };
+        }
+
         if (!D.url) {
+            throw {
+                error: [{
+                    'type': 'input',
+                    message: 'No input.url for AValidator.request'
+                }]
+            };
         }
     },
     promise: function (D) {
