@@ -52,7 +52,7 @@ AValidator = {
                 return cb({
                     error: [{
                         'type': 'request',
-                        message: E,
+                        message: E.message,
                         response: R,
                         body: B
                     }]

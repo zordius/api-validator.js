@@ -2,6 +2,16 @@
 
 var assert = require('assert'),
     AV = require('../api-validator.js'),
+    baseurl = 'http://fake.host',
+
+    PATHS = {
+        ABC123: '/getJsonAbc123'
+    },
+
+    setupFakeHTTP = function () {
+        require('nock')(baseurl)
+        .get(PATHS.ABC123).reply(200, {abc: 123});
+    },
 
     testSchema1 = {
         '$schema': 'http://json-schema.org/draft-04/schema#',
@@ -65,6 +75,8 @@ describe('Validator.all', function () {
 });
 
 describe('Validator.request', function () {
+    before(setupFakeHTTP);
+
     it('should be failed as input error when no callback', function (done) {
         try {
             AV.request({});
@@ -87,4 +99,12 @@ describe('Validator.request', function () {
             done();
         });
     });
+
+    it('should be failed as request error when connection refused', function (done) {
+        AV.request({url: 'http://localhost:1/'}, function (E) {
+            assert.deepEqual({ error: [ { type: 'request', message: 'connect ECONNREFUSED', response: undefined, body: undefined } ] }, E);
+            done();
+        });
+    });
+    
 });
