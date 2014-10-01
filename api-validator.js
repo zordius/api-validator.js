@@ -1,3 +1,4 @@
+/*jslint node: true */
 'use strict';
 
 var lodash = require('lodash'),
@@ -54,6 +55,6 @@ AValidator = {
 
         return err ? {error: lodash.map(err.validation, this.normalizeError, this)} : null;
     }
-}
+};
 
 module.exports = AValidator;
