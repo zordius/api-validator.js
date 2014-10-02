@@ -8,6 +8,6 @@ script:
   - ./travis.sh
 env:
   global:
-    secure: "NCJis4Jp7UI29KeXEngt4IrEwJOW9+y3vibTveBAQoovt3vcIE/4JTAn4a20yGVzVGU2+u9jNgJFi97IPLWaPBaLRnlsOSS4jKfvNkrAQzBGbZLHhqQYUiEsr7n9uxd//GImTPt6vkzNhJuR/Zb8jtdOqDp+tuYj+n1NT3A8SPA="
-    secure: "khLHvfd1YUe6Nj/mLDQPEZEbpXL+Afvj1n2Z4H2B+AWc3CFCvUrlk5jY8me8TMl+4+5YXnGXdVIyY42KbfZYiTkEg8JKd4vXWu/jmaELmQGoyLMqLPMGWV59nbl/13qixn+sFY47ex3PhcwoovZx+QggIw3WmMuyt5o7MXMqN3g="
-    secure: "o97Jwqj04qDimOE+zjR/gGhLnD/aN+fWE5MBy65/GbsQjsFt9JaosSSBFFK11JhCxIJXk6aXktQvrvFcVdDaGlcplNYymMVn3XkJYJ2aIi68wAXi1sxX0Wc1lR5Rqxrc52iSiD4e3yNAib35oMZ6MPrX8PFLIh6cCLSJYgv3e5M="
+    - secure: "NCJis4Jp7UI29KeXEngt4IrEwJOW9+y3vibTveBAQoovt3vcIE/4JTAn4a20yGVzVGU2+u9jNgJFi97IPLWaPBaLRnlsOSS4jKfvNkrAQzBGbZLHhqQYUiEsr7n9uxd//GImTPt6vkzNhJuR/Zb8jtdOqDp+tuYj+n1NT3A8SPA="
+    - secure: "khLHvfd1YUe6Nj/mLDQPEZEbpXL+Afvj1n2Z4H2B+AWc3CFCvUrlk5jY8me8TMl+4+5YXnGXdVIyY42KbfZYiTkEg8JKd4vXWu/jmaELmQGoyLMqLPMGWV59nbl/13qixn+sFY47ex3PhcwoovZx+QggIw3WmMuyt5o7MXMqN3g="
+    - secure: "o97Jwqj04qDimOE+zjR/gGhLnD/aN+fWE5MBy65/GbsQjsFt9JaosSSBFFK11JhCxIJXk6aXktQvrvFcVdDaGlcplNYymMVn3XkJYJ2aIi68wAXi1sxX0Wc1lR5Rqxrc52iSiD4e3yNAib35oMZ6MPrX8PFLIh6cCLSJYgv3e5M="
