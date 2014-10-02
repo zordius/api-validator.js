@@ -25,7 +25,7 @@ if [ -z "$CODEDIFF" ]; then
 fi
 
 # build JS files for dist and test
-npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs
+npm install grunt grunt-cli grunt-contrib-connect grunt-saucelabs badge-render
 npm run-script lint && npm run-script build_std && npm run-script build_dbg && npm run-script build_min && npm run-script build_req && npm run-script build_tst
 
 CODE=$?
@@ -33,10 +33,10 @@ if [ $CODE -ne 0 ]; then
   echo Build failed, abort.
   exit 1
 fi
-exit 0
+
 # do sauce labs tests
 node_modules/.bin/grunt || exit $?
-
+exit;
 # Setup git
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
