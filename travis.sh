@@ -33,10 +33,10 @@ if [ $CODE -ne 0 ]; then
   echo Build failed, abort.
   exit 1
 fi
-
+# Skip browser test because depend on nock and not supported
 # do sauce labs tests
 node_modules/.bin/grunt || exit $?
-exit;
+
 # Setup git
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
