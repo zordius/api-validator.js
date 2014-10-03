@@ -215,6 +215,11 @@ describe('Validator.resolveFilePath', function () {
         done();
     });
 
+    it('should resolve file://abc without base', function (done) {
+        assert.deepEqual('file://abc', AV.resolveFilePath('file://abc'));
+        done();
+    });
+
     it('should resolve file://abc under /def', function (done) {
         assert.deepEqual('file:///def/abc', AV.resolveFilePath('file://abc', '/def'));
         done();
@@ -232,6 +237,21 @@ describe('Validator.resolveFilePath', function () {
 
     it('should resolve file://../../e#2 under /a/b/c/d', function (done) {
         assert.deepEqual('file:///a/b/e#2', AV.resolveFilePath('file://../../e#2', '/a/b/c/d'));
+        done();
+    });
+});
+
+describe('Validator.resolveAllRelativePath', function () {
+    it('should be untouched', function (done) {
+        assert.deepEqual({123: 456}, AV.resolveAllRelativePath({123: 456}));
+        assert.deepEqual({123: 456, ref: 'ok'}, AV.resolveAllRelativePath({123: 456, ref: 'ok'}));
+        assert.deepEqual({123: 456, '$ref': 'ok!'}, AV.resolveAllRelativePath({123: 456, '$ref': 'ok!'}));
+        assert.deepEqual({123: 456, '$ref': 'http://what/'}, AV.resolveAllRelativePath({123: 456, '$ref': 'http://what/'}));
+        done();
+    });
+
+    it('should be resolved', function (done) {
+        assert.deepEqual({123: 456}, AV.resolveAllRelativePath({123: 456}));
         done();
     });
 });

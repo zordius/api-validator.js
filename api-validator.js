@@ -67,7 +67,7 @@ AValidator = {
         var R = lodash.isFunction(resolver) ? resolver : AValidator.resolveFilePath;
         traverse(O).forEach(function (V) {
             if (this.key == '$ref') {
-                this.update(CB(V, base, R));
+                this.update(R(V, base));
             }
         });
         return O;
