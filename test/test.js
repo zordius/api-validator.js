@@ -179,4 +179,12 @@ describe('Validator.findSchemaFiles', function () {
         ], AV.findSchemaFiles('test/schemas', /test.json/));
         done();
     });
+
+    it('should match 2 files', function (done) {
+        assert.deepEqual([
+            'test/schemas/test.json',
+            'test/schemas/test2.json'
+        ], AV.findSchemaFiles('test/schemas', /test(2?).json/));
+        done();
+    });
 });
