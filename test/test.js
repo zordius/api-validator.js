@@ -1,6 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
+    fs = require('fs'),
     AV = require('../api-validator.js'),
     nock = require('nock'),
 
@@ -185,6 +186,15 @@ describe('Validator.findSchemaFiles', function () {
             'test/schemas/test.json',
             'test/schemas/test2.json'
         ], AV.findSchemaFiles('test/schemas', /test(2?).json/));
+        done();
+    });
+});
+
+describe('Validator.loadSchemaFiles', function () {
+    it('should load file content', function (done) {
+        assert.deepEqual({
+            'test/schemas/test.json': require('./schemas/test.json')
+        }, AV.loadSchemaFiles(['test/schemas/test.json']));
         done();
     });
 });

@@ -40,6 +40,15 @@ AValidator = {
 
         return F;
     },
+    loadSchemaFiles: function (FS) {
+        var H = {};
+
+        lodash.map(FS, function (F) {
+            H[F] = JSON.parse(fs.readFileSync(F, 'utf8'));
+        });
+
+        return H;
+    },
     promiseAll: function (list) {
         return when.all(lodash.map(list, AValidator.promise));
     },
