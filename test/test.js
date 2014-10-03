@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require('assert'),
+var assert = require('chai').assert,
     AV = require('../api-validator.js'),
     nock = require('nock'),
 
@@ -181,7 +181,7 @@ describe('Validator.findSchemaFiles', function () {
     });
 
     it('should match 2 files', function (done) {
-        assert.deepEqual([
+        assert.sameMembers([
             'test/schemas/test.json',
             'test/schemas/test2.json'
         ], AV.findSchemaFiles('test/schemas', /test(2?).json/));
