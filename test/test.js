@@ -251,7 +251,12 @@ describe('Validator.resolveAllRelativePath', function () {
     });
 
     it('should be resolved', function (done) {
-        assert.deepEqual({123: 456}, AV.resolveAllRelativePath({123: 456}));
+        assert.deepEqual({123: {'$ref': 'file:///a/b/c'}}, AV.resolveAllRelativePath({123: {'$ref': 'file://b/c'}}, '/a'));
+        done();
+    });
+
+    it('should resolve deeper', function (done) {
+        assert.deepEqual({123: {456: {'$ref': 'file:///a/b/c'}}}, AV.resolveAllRelativePath({123: {456: {'$ref': 'file://b/c'}}}, '/a'));
         done();
     });
 });
