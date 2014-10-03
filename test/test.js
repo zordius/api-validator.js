@@ -216,7 +216,7 @@ describe('Validator.resolveFilePath', function () {
     });
 
     it('should resolve file://abc without base', function (done) {
-        assert.deepEqual('file://abc', AV.resolveFilePath('file://abc'));
+        assert.deepEqual('file:///abc', AV.resolveFilePath('file:///abc'));
         done();
     });
 
