@@ -73,6 +73,11 @@ AValidator = {
         return O;
     },
     loadRelativeSchemaFiles: function (base, match) {
+        var R = {};
+        lodash.map(loadSchemaFiles(findSchemaFiles(base, match)), function (S, F) {
+            R['file://' + F] = AValidator.resolveAllRelativePath(S, F);
+        });
+        return R;
     },
     promiseAll: function (list) {
         return when.all(lodash.map(list, AValidator.promise));

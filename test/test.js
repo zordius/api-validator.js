@@ -259,4 +259,13 @@ describe('Validator.resolveAllRelativePath', function () {
         assert.deepEqual({123: {456: {'$ref': 'file:///a/b/c'}}}, AV.resolveAllRelativePath({123: {456: {'$ref': 'file://b/c'}}}, '/a'));
         done();
     });
+
+    it('should resolve with custom resolver', function (done) {
+        assert.deepEqual({123: {456: {'$ref': 'file://d/c/b/a'}}}, AV.resolveAllRelativePath({123: {456: {'$ref': 'what'}}}, 'base_dir', function (N, B) {
+            assert.deepEqual('base_dir', B);
+            assert.deepEqual('what', N);
+            return 'file://d/c/b/a';
+        }));
+        done();
+    });
 });
