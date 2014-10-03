@@ -219,4 +219,19 @@ describe('Validator.resolveFilePath', function () {
         assert.deepEqual('file:///def/abc', AV.resolveFilePath('file://abc', '/def'));
         done();
     });
+
+    it('should resolve file://.. under /a/b/c', function (done) {
+        assert.deepEqual('file:///a/b', AV.resolveFilePath('file://..', '/a/b/c'));
+        done();
+    });
+
+    it('should resolve file://../d# under /a/b/c', function (done) {
+        assert.deepEqual('file:///a/b/d#', AV.resolveFilePath('file://../d#', '/a/b/c'));
+        done();
+    });
+
+    it('should resolve file://../../e#2 under /a/b/c/d', function (done) {
+        assert.deepEqual('file:///a/b/e#2', AV.resolveFilePath('file://../../e#2', '/a/b/c/d'));
+        done();
+    });
 });
