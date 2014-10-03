@@ -139,6 +139,13 @@ AValidator = {
         }
 
         E = jjv();
+
+        if (D.schemas) {
+            lodash.map(D.schemas, function (R, N) {
+                E.addSchema(N, R);
+            });
+        }
+
         err = E.validate(D.schema, D.data);
 
         return err ? {error: lodash.map(err.validation, AValidator.normalizeError)} : null;

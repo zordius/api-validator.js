@@ -63,6 +63,15 @@ describe('Validator.one', function () {
         }));
         done();
     });
+
+    it('should validate by schema name', function (done) {
+        assert.deepEqual(null, AV.one({
+            data: {abc: 'dev', def: 1},
+            schemas: {abcde123: testSchema1},
+            schema: 'abcde123'
+        }));
+        done();
+    });
 });
 
 describe('Validator.all', function () {
