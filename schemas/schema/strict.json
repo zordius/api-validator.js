@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Strict JSON Schema to validate other JSON Schema",
+    "type": "object",
+    "required": ["title", "$schema", "type"],
+    "properties": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "$schema": {
+            "type": "string",
+            "required": true
+        },
+        "type": {
+            "type": "string",
+            "required": true
+        }
+    }
+}

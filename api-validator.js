@@ -5,7 +5,9 @@ var lodash = require('lodash'),
     jjv = require('jjv'),
     REQ = require('request'),
     when = require('when'),
+    traverse = require('traverse'),
     fs = require('fs'),
+    path = require('path'),
 
 AValidator = {
     normalizeError: function (V, I) {
@@ -48,6 +50,29 @@ AValidator = {
         });
 
         return H;
+    },
+    resolveFilePath: function (U, base) {
+        var M;
+        try {
+            M = U.match(/^file:\/\/(.+)(#.*)?/);
+            if (M) {
+                return 'file://' + path.resolve(base, M[1]) + (M[2] || '');
+            }
+        } catch (E) {
+            // Do nothing ...
+        }
+        return U;
+    },
+    resolveAllRelativePath: function (O, base, resolver) {
+        var R = lodash.isFunction(resolver) ? resolver : AValidator.resolveFilePath;
+        traverse(O).forEach(function (V) {
+            if (this.key == '$ref') {
+                this.update(CB(V, base, R));
+            }
+        });
+        return O;
+    },
+    loadRelativeSchemaFiles: function (base, match) {
     },
     promiseAll: function (list) {
         return when.all(lodash.map(list, AValidator.promise));

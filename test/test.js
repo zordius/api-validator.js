@@ -207,3 +207,16 @@ describe('Validator.loadSchemaFiles', function () {
         done();
     });
 });
+
+describe('Validator.resolveFilePath', function () {
+    it('should works with any input', function (done) {
+        assert.deepEqual(undefined, AV.resolveFilePath());
+        assert.deepEqual(1, AV.resolveFilePath(1));
+        done();
+    });
+
+    it('should resolve file://abc under /def', function (done) {
+        assert.deepEqual('file:///def/abc', AV.resolveFilePath('file://abc', '/def'));
+        done();
+    });
+});
