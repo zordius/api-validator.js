@@ -53,12 +53,9 @@ result = AV.validate.one({
 var schemas = AV.schema.load(AV.findSchemaFiles('some/directory', /.+\.json/));
 ```
 
-**Relative `'$ref': 'file://..'`**
-
-```javascript
+// Deal with relative `'$ref': 'file://..'`**
 // result as { 'file://path/file1': schema1, 'file://path:file2': schema2 ... }
 // id in schema will be updated
 // any '$ref' point to 'file://relative/path/another' in schema will be updated
 var schemas = AV.schema.loadRelativeFile('some/directory', /.+\.json/));
 ```
-
