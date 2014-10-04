@@ -10,12 +10,16 @@ Features
 
 * JSON Schema V4 Draft Validation (powered by <a href="https://github.com/acornejo/jjv">jjv</a>)
  * load schema files
- * handle both remote $ref (http://...) or relative file $ref (file://../.)
-* API Validation - fetch , save , validate (TODO)
- 1 describe API request and JSON Schema pairs by yaml file
- 2 make API requests and save response as json files
- 3 validate on these response 
-
+ * handle both remote $ref `http://...` or relative file $ref `file://../.`
+* API Validation - fetch , save , validate , report **TODO**
+ * describe API request and JSON Schema pairs by yaml file **TODO**
+ * make API requests and save response as json files **TODO**
+ * validate on these response **TODO**
+ * output validation results (powered by <a href="https://github.com/visionmedia/mocha">mocha</a> reports. **TODO**
+* Command line tool **TODO**
+ * Validate your schema files **TODO**
+ * List and fetch referenced remote schema files **TODO**
+ * API Validation **TODO**
 CommonJS Usage
 --------------
 
