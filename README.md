@@ -30,7 +30,7 @@ var AV = require('api-validator'),
     result;
 
 // null means pass, or object with error information
-result = AV.one({
+result = AV.validate.one({
     data: {abc: 123}
     schema: {
         '$schema': 'http://json-schema.org/draft-04/schema#',
@@ -50,15 +50,15 @@ result = AV.one({
 
 ```javascript
 // result as { fileName1: schema1, fileName2: schema2, ... }
-var schemas = AV.loadSchemaFiles(AV.findSchemaFiles('some/directory', /.+\.json/));
+var schemas = AV.schema.load(AV.findSchemaFiles('some/directory', /.+\.json/));
 ```
 
-**Dereference `'$ref': 'file://..'`**
+**Relative `'$ref': 'file://..'`**
 
 ```javascript
 // result as { 'file://path/file1': schema1, 'file://path:file2': schema2 ... }
 // id in schema will be updated
 // any '$ref' point to 'file://relative/path/another' in schema will be updated
-var schemas = AV.loadRelativeSchemaFiles('some/directory', /.+\.json/));
+var schemas = AV.schema.loadRelativeFile('some/directory', /.+\.json/));
 ```
 
