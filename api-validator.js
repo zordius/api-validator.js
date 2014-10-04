@@ -72,19 +72,36 @@ AValidator = {
         });
         return O;
     },
-    loadRelativeSchemaFiles: function (base, match, opt) {
-        var R = {},
-            keepID = (opt && opt.keepID) ? opt.keepID : false;
-
+    loadFixedSchemaFiles: function (base, match, fixer, opts) {
+        var R = {};
         lodash.map(AValidator.loadSchemaFiles(AValidator.findSchemaFiles(base, match)), function (S, F) {
-            var FN = path.resolve(F),
-                URI = 'file://' + FN,
-                ID = (keepID && S.id) ? S.id : URI;
-
-            S.id = ID;
-            R[ID] = AValidator.resolveAllRelativePath(S, path.dirname(ID.replace(/file:\/\//, '')));
+            var O = fixer({
+                name: F,
+                schema: S,
+                base: base,
+                options: opts
+            });
+            R[O.name] = O.schema;
         });
         return R;
+    },
+    loadRemoteCachedSchemaFiles: function (base, match, opts) {
+        return AValidator.loadFixedSchemaFiles(base, match, AValidator.remoteFixer, opts);
+    },
+    loadRelativeSchemaFiles: function (base, match, opts) {
+        return AValidator.loadFixedSchemaFiles(base, match, AValidator.relativeFileSchemaFixer, opts);
+    },
+    relativeFileSchemaFixer: function (O) {
+        var keepID = (O.options && O.options.keepID) ? O.options.keepID : false,
+            FN = path.resolve(O.name),
+            URI = 'file://' + FN,
+            ID = (keepID && O.schema.id) ? O.schema.id : URI;
+
+        O.name = ID;
+        O.schema.id = ID;
+        O.schema = AValidator.resolveAllRelativePath(O.schema, path.dirname(ID.replace(/file:\/\//, '')));
+
+        return O;
     },
     promiseAll: function (list) {
         return when.all(lodash.map(list, AValidator.promise));
