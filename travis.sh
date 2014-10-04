@@ -34,6 +34,8 @@ if [ $CODE -ne 0 ]; then
   exit 1
 fi
 # Skip browser test because depend on nock and not supported
+exit 0
+
 # do sauce labs tests
 node_modules/.bin/grunt || exit $?
 
