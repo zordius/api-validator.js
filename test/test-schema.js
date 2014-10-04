@@ -2,28 +2,7 @@
 
 var assert = require('chai').assert,
     path = require('path'),
-    AS = require('../api-validator').schema,
-    nock = require('nock'),
-
-    baseurl = 'http://fake.host',
-    NoConnectURL = 'http://localhost:1/',
-
-    PATHS = {
-        NULL: '/getNull',
-        ABC123: '/getJsonAbc123',
-        ABCDEF: '/getJsonAbcDef'
-    },
-
-    setupFakeHTTP = function () {
-        nock(baseurl)
-        .get(PATHS.NULL).reply(200, '')
-        .get(PATHS.ABC123).reply(200, {abc: 123})
-        .get(PATHS.ABCDEF).reply(200, {abc: '123', def: 0});
-    },
-
-    cleanFakeHTTP = function () {
-        nock.cleanAll();
-    };
+    AS = require('../api-validator').schema;
 
 describe('Schema.find', function () {
     it('should search by default match', function (done) {

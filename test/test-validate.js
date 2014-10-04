@@ -1,8 +1,9 @@
 'use strict';
 
 var assert = require('chai').assert,
-    path = require('path'),
-    AV = require('../api-validator.js').validate,
+    LIB = require('../api-validator.js'),
+    AV = LIB.validate,
+    AS = LIB.schema,
     nock = require('nock'),
 
     baseurl = 'http://fake.host',
@@ -179,5 +180,12 @@ describe('Validator.promiseAll', function () {
             ], E);
             done();
         });
+    });
+});
+
+describe('Validator.selfVerify', function () {
+    it('should passed all core schemas', function (done) {
+        assert.deepEqual(null, AV.selfVerify(AS.loadCoreSchemas()));
+        done();
     });
 });
