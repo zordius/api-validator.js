@@ -8,8 +8,9 @@ A nodejs lib and command line tool powered by JSON Schema to validate web API ou
 CommonJS Usage
 --------------
 
+**Validation**
+
 ```javascript
-// do one validation with data and schema
 var AV = require('api-validator'),
     result;
 
@@ -28,5 +29,20 @@ result = AV.one({
         }
     }
 });
+```
+
+**Load Schema files**
+
+```javascript
+// result as { fileName1: schema1, fileName2: schema2, ... }
+var schemas = AV.loadSchemaFiles(AV.findSchemaFiles('some/directory', /.+\.json/));
+```
+
+**Dereference `file://`**
+
+```javascript
+// result as { 'file://path/file1': schema1, 'file://path:file2': schema2 ... }
+// id in schema will be updated
+var schemas = AV.loadRelativeSchemaFiles('some/directory', /.+\.json/));
 ```
 
