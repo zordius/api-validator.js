@@ -64,10 +64,10 @@ AValidator = {
         return U;
     },
     resolveAllRelativePath: function (O, base, resolver) {
-        var R = lodash.isFunction(resolver) ? resolver : AValidator.resolveFilePath;
+        var usedResolver = lodash.isFunction(resolver) ? resolver : AValidator.resolveFilePath;
         traverse(O).forEach(function (V) {
-            if (this.key == '$ref') {
-                this.update(R(V, base));
+            if (this.key === '$ref') {
+                this.update(usedResolver(V, base));
             }
         });
         return O;
