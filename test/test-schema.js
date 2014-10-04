@@ -113,7 +113,7 @@ describe('Schema.deepResolveFileRef', function () {
     });
 });
 
-describe('Schema.loadRelativeSchemaFiles', function () {
+describe('Schema.loadRelativeFile', function () {
     it('should loaded with $ref resolved', function (done) {
         var F = 'file://' + path.resolve('test/schemas/test2.json'),
             R = {};
