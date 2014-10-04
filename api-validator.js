@@ -72,10 +72,17 @@ AValidator = {
         });
         return O;
     },
-    loadRelativeSchemaFiles: function (base, match) {
-        var R = {};
-        lodash.map(loadSchemaFiles(findSchemaFiles(base, match)), function (S, F) {
-            R['file://' + F] = AValidator.resolveAllRelativePath(S, F);
+    loadRelativeSchemaFiles: function (base, match, opt) {
+        var R = {},
+            keepID = (opt && opt.keepID) ? opt.keepID : false;
+
+        lodash.map(AValidator.loadSchemaFiles(AValidator.findSchemaFiles(base, match)), function (S, F) {
+            var FN = path.resolve(F),
+                URI = 'file://' + FN,
+                ID = (keepID && S.id) ? S.id : URI;
+
+            S.id = ID;
+            R[ID] = AValidator.resolveAllRelativePath(S, path.dirname(ID.replace(/file:\/\//, '')));
         });
         return R;
     },

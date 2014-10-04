@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
-    fs = require('fs'),
+    path = require('path'),
     AV = require('../api-validator.js'),
     nock = require('nock'),
 
@@ -266,6 +266,33 @@ describe('Validator.resolveAllRelativePath', function () {
             assert.deepEqual('what', N);
             return 'file://d/c/b/a';
         }));
+        done();
+    });
+});
+
+describe('Validator.loadRelativeSchemaFiles', function () {
+    it('should loaded with $ref resolved', function (done) {
+        var F = 'file://' + path.resolve('test/schemas/test2.json'),
+            R = {};
+
+        R[F] = {
+            id: F,
+            '$schema': 'http://json-schema.org/draft-04/schema#',
+            'extends': {
+                '$ref': F.replace(/test2/, 'test')
+            },
+            properties: {
+                def: {
+                    type: 'number'
+                }
+            },
+            required: [
+                'abc',
+                'def'
+            ]
+        };
+
+        assert.deepEqual(R, AV.loadRelativeSchemaFiles('test/schemas', /test2.json/));
         done();
     });
 });
