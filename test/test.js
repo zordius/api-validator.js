@@ -296,3 +296,14 @@ describe('Validator.loadRelativeSchemaFiles', function () {
         done();
     });
 });
+
+describe('Validator.loadRemoteCachedSchemaFiles', function () {
+    it('should load with correct URI', function (done) {
+        var S = require('../schemas/remote/draft4.json'),
+            R = {};
+
+        R[S.id] = S;
+        assert.deepEqual(R, AV.loadRemoteCachedSchemaFiles('schemas/remote', /draft4.json/));
+        done();
+    });
+});

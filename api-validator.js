@@ -91,6 +91,11 @@ AValidator = {
     loadRelativeSchemaFiles: function (base, match, opts) {
         return AValidator.loadFixedSchemaFiles(base, match, AValidator.relativeFileSchemaFixer, opts);
     },
+    remoteFixer: function (O) {
+        O.name = O.schema.id;
+
+        return O;
+    },
     relativeFileSchemaFixer: function (O) {
         var keepID = (O.options && O.options.keepID) ? O.options.keepID : false,
             FN = path.resolve(O.name),
