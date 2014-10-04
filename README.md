@@ -43,6 +43,7 @@ var schemas = AV.loadSchemaFiles(AV.findSchemaFiles('some/directory', /.+\.json/
 ```javascript
 // result as { 'file://path/file1': schema1, 'file://path:file2': schema2 ... }
 // id in schema will be updated
+// any '$ref' point to 'file://relative/path/another' in schema will be updated
 var schemas = AV.loadRelativeSchemaFiles('some/directory', /.+\.json/));
 ```
 
