@@ -188,4 +188,15 @@ describe('Validator.selfVerify', function () {
         assert.deepEqual({}, AV.selfVerify(AS.loadCoreSchemas()));
         done();
     });
+
+    it('should failed by a none title schema', function (done) {
+        var C = AS.loadCoreSchemas(),
+            FN = 'test/schemas/error.jschema',
+            S = AS.load([FN]);
+
+        C['test'] = S[FN];
+
+        assert.deepProperty(AV.selfVerify(C), 'test.error');
+        done();
+    });
 });
