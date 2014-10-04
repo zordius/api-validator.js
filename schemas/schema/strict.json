@@ -1,21 +1,18 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "Strict JSON Schema to validate other JSON Schema",
-    "id": "core://strict.json",
+    "id": "core://api.org/strict#",
     "type": "object",
     "required": ["title", "$schema", "type"],
     "properties": {
         "title": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "$schema": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "type": {
-            "type": "string",
-            "required": true
+            "type": "string"
         }
     }
 }

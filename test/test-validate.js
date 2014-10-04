@@ -185,7 +185,7 @@ describe('Validator.promiseAll', function () {
 
 describe('Validator.selfVerify', function () {
     it('should passed all core schemas', function (done) {
-        assert.deepEqual(null, AV.selfVerify(AS.loadCoreSchemas()));
+        assert.deepEqual({}, AV.selfVerify(AS.loadCoreSchemas()));
         done();
     });
 });
