@@ -38,7 +38,7 @@ result = AV.one({
 var schemas = AV.loadSchemaFiles(AV.findSchemaFiles('some/directory', /.+\.json/));
 ```
 
-**Dereference `file://`**
+**Dereference `'$ref': 'file://..'`**
 
 ```javascript
 // result as { 'file://path/file1': schema1, 'file://path:file2': schema2 ... }
