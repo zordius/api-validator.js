@@ -15,7 +15,7 @@ Features
  * describe API request and JSON Schema pairs by yaml file **TODO**
  * make API requests and save response as json files **TODO**
  * validate on these response **TODO**
- * output validation results (powered by <a href="https://github.com/visionmedia/mocha">mocha</a> reports. **TODO**
+ * output validation results (powered by <a href="https://github.com/visionmedia/mocha">mocha</a> reports) **TODO**
 * Command line tool **TODO**
  * Validate your schema files **TODO**
  * List and fetch referenced remote schema files **TODO**
