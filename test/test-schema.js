@@ -135,18 +135,18 @@ describe('Schema.loadRelativeFile', function () {
             ]
         };
 
-        assert.deepEqual(R, AS.loadRelativeSchemaFiles('test/schemas', /test2.json/));
+        assert.deepEqual(R, AS.loadRelativeFile('test/schemas', /test2.json/));
         done();
     });
 });
 
-describe('Schema.loadRemoteCachedSchemaFiles', function () {
+describe('Schema.loadRemoteCached', function () {
     it('should load with correct URI', function (done) {
         var S = require('../schemas/remote/draft4.json'),
             R = {};
 
         R[S.id] = S;
-        assert.deepEqual(R, AS.loadRemoteCachedSchemaFiles('schemas/remote', /draft4.json/));
+        assert.deepEqual(R, AS.loadRemoteCached('schemas/remote', /draft4.json/));
         done();
     });
 });
