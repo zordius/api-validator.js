@@ -26,10 +26,25 @@ var assert = require('chai').assert,
     };
 
 describe('Schema.find', function () {
+    it('should search by default match', function (done) {
+        assert.sameMembers([
+            'test/schemas/test.json',
+            'test/schemas/test2.json'
+        ], AS.find('test/schemas'));
+        done();
+    });
+
     it('should search for only matched pattern under the base directory', function (done) {
         assert.deepEqual([
             'test/schemas/test.json'
         ], AS.find('test/schemas', /test.json/));
+        done();
+    });
+
+    it('should search by absolute path', function (done) {
+        assert.deepEqual([
+            path.resolve('test/schemas/test.json')
+        ], AS.find(path.resolve('test/schemas'), /test.json/));
         done();
     });
 
@@ -150,3 +165,13 @@ describe('Schema.loadRemoteCached', function () {
         done();
     });
 });
+
+describe('Schema.loadCoreSchemas', function () {
+    it('should load core schemas', function (done) {
+        var C = AS.loadCoreSchemas();
+
+        assert.deepEqual(require('../schemas/remote/draft4.json'), C['http://json-schema.org/draft-04/schema#']);
+        done();
+    });
+});
+

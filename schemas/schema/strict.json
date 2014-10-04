@@ -1,6 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "Strict JSON Schema to validate other JSON Schema",
+    "id": "core://strict.json",
     "type": "object",
     "required": ["title", "$schema", "type"],
     "properties": {
