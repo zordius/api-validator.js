@@ -71,11 +71,12 @@ describe('Request.one', function () {
         });
     });
 
-    it('should be passed', function (done) {
+    it('should response json', function (done) {
         AR.one({
-            url: baseurl + PATHS.ABCDEF
+            url: baseurl + PATHS.ABCDEF,
+            json: true
         }, function (E) {
-            assert.deepEqual(null, E);
+            assert.deepEqual({abc: '123', def: 0}, E.body);
             done();
         });
     });
