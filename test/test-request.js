@@ -28,41 +28,45 @@ describe('Request.one', function () {
     before(setupFakeHTTP);
     after(cleanFakeHTTP);
 
-    it('should be failed as input error when no callback', function (done) {
+    it('should throw exception when no callback', function (done) {
         try {
             AR.one({});
         } catch (E) {
-            assert.deepEqual({ body: undefined, response: undefined, error: [ { type: 'input', message: 'No callback for ARequest.one' } ] }, E);
+            assert.deepEqual({ body: undefined, request: {}, response: undefined, error: [ { type: 'input', message: 'No callback for ARequest.one' } ] }, E);
         }
         done();
     });
 
-    it('should be failed as input error', function (done) {
+    it('should response input error', function (done) {
         AR.one(null, function (E) {
-            assert.deepEqual({ body: undefined, response: undefined, error: [ { type: 'input', message: 'No input for ARequest.one' } ] }, E);
+            assert.deepEqual({ body: undefined, request: {}, response: undefined, error: [ { type: 'input', message: 'No input for ARequest.one' } ] }, E);
             done();
         });
     });
 
-    it('should be failed as input error when no input.url', function (done) {
+    it('should response input error when no input.url', function (done) {
         AR.one({}, function (E) {
-            assert.deepEqual({ body: undefined, response: undefined, error: [ { type: 'input', message: 'No input.url for ARequest.one' } ] }, E);
+            assert.deepEqual({ body: undefined, request: {}, response: undefined, error: [ { type: 'input', message: 'No input.url for ARequest.one' } ] }, E);
             done();
         });
     });
 
-    it('should be failed as one error when connection refused', function (done) {
+    it('should response one error when connection refused', function (done) {
         AR.one({url: NoConnectURL}, function (E) {
-            assert.deepEqual({ body: undefined, response: undefined, error: [ { type: 'request', message: 'connect ECONNREFUSED' } ] }, E);
+            assert.deepEqual({ body: undefined, request: {}, response: undefined, error: [ { type: 'request', message: 'connect ECONNREFUSED' } ] }, E);
             done();
         });
     });
 
-    it('should be failed when response null', function (done) {
+    it('should response empty string', function (done) {
         AR.one({
             url: baseurl + PATHS.NULL
         }, function (E) {
-            assert.deepEqual({"error":[{"type":"validation","target":"type","rule":"object"}]}, E);
+            assert.property(E, 'request');
+            assert.property(E, 'response');
+            delete E.request;
+            delete E.response;
+            assert.deepEqual({ body: '', error:[]}, E);
             done();
         });
     });
