@@ -88,7 +88,7 @@ describe('Request.promise', function () {
 
     it('should be failed as input error', function (done) {
         AR.promise().then(function (E) {
-            assert.deepEqual({"error":[{"type":"input","message":"No input for ARequest.one"}]}, E);
+            assert.deepEqual([{"type":"input","message":"No input for ARequest.one"}], E.error);
             done();
         });
     });
@@ -98,15 +98,22 @@ describe('Request.promiseAll', function () {
     before(setupFakeHTTP);
     after(cleanFakeHTTP);
 
-    it('should handle all validation', function (done) {
+    it('should handle all request', function (done) {
         AR.promiseAll([{
-            url: baseurl + PATHS.ABCDEF
+            url: baseurl + PATHS.ABCDEF,
+            json: true
         },{
             url: NoConnectURL
         }]).then(function (E) {
+            assert.property(E[0], 'request');
+            assert.property(E[0], 'response');
+            delete E[0].request;
+            delete E[0].response;
+            assert.property(E[1], 'request');
+            delete E[1].request;
             assert.deepEqual([
-                null,
-                { error: [ { type: 'one', message: 'connect ECONNREFUSED', response: undefined, body: undefined } ] }
+                {error: [], body: {abc: '123', def: 0}},
+                {error: [ { type: 'request', message: 'connect ECONNREFUSED' } ], response: undefined, body: undefined}
             ], E);
             done();
         });
