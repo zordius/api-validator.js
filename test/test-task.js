@@ -28,7 +28,9 @@ var assert = require('chai').assert,
     },
 
     initMockFS = function () {
-        mockfs({});
+        mockfs({
+            output: {}
+        });
     },
 
     clearMockFS = function () {
@@ -59,5 +61,15 @@ describe('Task.fetch', function () {
             assert.deepEqual({abc:'123', def: 0}, JSON.parse(fs.readFileSync('file_0004.json'), 'utf8').body);
             done();
         }});
+    });
+
+    it('should save results and save by option', function (done) {
+        AT.fetch([{url: NoConnectURL}], {
+            prefix: 'output/',
+            callback: function () {
+                assert.deepEqual({type: 'request', message: 'connect ECONNREFUSED'}, JSON.parse(fs.readFileSync('output/0001.json'), 'utf8').error[0]);
+                done();
+            }
+        });
     });
 });
