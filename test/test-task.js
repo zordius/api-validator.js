@@ -51,13 +51,13 @@ describe('Task.fetch', function () {
             {url: NoConnectURL},
             {url: baseurl + PATHS.ABC123},
             {url: baseurl + PATHS.ABCDEF, json: true}
-        ], function (L) {
+        ], {callback: function (L) {
             assert.deepEqual({}, L);
             assert.deepEqual('', JSON.parse(fs.readFileSync('file_0001.json'), 'utf8').body);
             assert.deepEqual({type: 'request', message: 'connect ECONNREFUSED'}, JSON.parse(fs.readFileSync('file_0002.json'), 'utf8').error[0]);
             assert.deepEqual('{"abc":123}', JSON.parse(fs.readFileSync('file_0003.json'), 'utf8').body);
             assert.deepEqual({abc:'123', def: 0}, JSON.parse(fs.readFileSync('file_0004.json'), 'utf8').body);
             done();
-        });
+        }});
     });
 });
