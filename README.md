@@ -20,6 +20,7 @@ Features
  * Validate your schema files **TODO**
  * List and fetch referenced remote schema files **TODO**
  * API Validation **TODO**
+
 CommonJS Usage
 --------------
 
