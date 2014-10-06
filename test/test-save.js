@@ -23,4 +23,11 @@ describe('Save.namer', function () {
         assert.equal('output/file_0001.json', AS.namer(0));
         done();
     });
+
+    it('should return name by provided options', function (done) {
+        assert.equal('output/file_0004.js', AS.namer(3, null, {ext: '.js'}));
+        assert.equal('output/result_0004.js', AS.namer(3, null, {ext: '.js', prefix: 'result_'}));
+        assert.equal('../schemas/result_0004.js', AS.namer(3, null, {ext: '.js', prefix: 'result_', basedir: '../schemas'}));
+        done();
+    });
 });
