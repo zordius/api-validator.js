@@ -6,7 +6,7 @@
     "extends": {
         "$ref": "http://json-schema.org/draft-04/schema#"
     },
-    "required": ["title", "$schema", "type"],
+    "required": ["title", "$schema", "type", "properties"],
     "properties": {
         "title": {
             "type": "string"
@@ -16,6 +16,9 @@
         },
         "type": {
             "type": "string"
+        },
+        "properties": {
+            "type": "object"
         }
     }
 }

@@ -1,0 +1,6 @@
+{
+    "title": "this is title",
+    "description": "a schema refer to $schema not found",
+    "id": "this is id",
+    "$schema": "never_be_found"
+}

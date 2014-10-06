@@ -112,4 +112,18 @@ describe('Validator.selfVerify', function () {
         assert.deepProperty(AV.selfVerify(C), 'test.error');
         done();
     });
+
+    it('should failed when $schema not founds in provided schemas', function (done) {
+        var C = AS.loadCoreSchemas(),
+            FN = 'test/schemas/schema_notfound.jschema',
+            S = AS.load([FN]);
+
+        C['test'] = S[FN];
+
+        assert.deepEqual({test: {error: [{
+            'type': 'schemas',
+            message: 'can not find schema "never_be_found"'
+        }]}}, AV.selfVerify(C));
+        done();
+    });
 });
