@@ -38,10 +38,18 @@ describe('Save.namer', function () {
         done();
     });
 
-    it('should return name by provided options', function (done) {
+    it('should return name by provided number and options', function (done) {
         assert.equal('file_0004.js', AS.namer(3, null, {ext: '.js'}));
         assert.equal('result_0004.js', AS.namer(3, null, {ext: '.js', prefix: 'result_'}));
         assert.equal('../schemas/result_0004.js', AS.namer(3, null, {ext: '.js', prefix: '../schemas/result_'}));
+        done();
+    });
+
+    it('should return untouched name when index is string', function (done) {
+        assert.equal('0', AS.namer('0'));
+        assert.equal('3', AS.namer('3', null, {ext: '.js'}));
+        assert.equal('4', AS.namer('4', null, {ext: '.js', prefix: 'result_'}));
+        assert.equal('test_ok', AS.namer('test_ok', null, {ext: '.js', prefix: '../schemas/result_'}));
         done();
     });
 });
@@ -102,11 +110,13 @@ describe('Save.all', function () {
     it('should return save result', function (done) {
         assert.deepEqual({'never/saved/directory': {error: [{
             type: 'save',
-            message: "ENOENT, no such file or directory 'file_never/saved/directory.json'",
+            message: "ENOENT, no such file or directory 'never/saved/directory'",
         }]}}, AS.all({
             'test_json': {a: 'OK!'},
             'never/saved/directory': {}
         }));
+
+        assert.equal('{\n    "a": "OK!"\n}', fs.readFileSync('test_json', 'utf8'));
         done();
     });
 });
