@@ -52,21 +52,24 @@ describe('Request.one', function () {
     });
 
     it('should response one error when connection refused', function (done) {
-        AR.one({url: NoConnectURL}, function (E) {
-            assert.deepEqual({ body: undefined, request: {}, response: undefined, error: [ { type: 'request', message: 'connect ECONNREFUSED' } ] }, E);
+        var I = {url: NoConnectURL};
+        AR.one(I, function (E) {
+            assert.deepEqual({ input: I, body: undefined, request: {}, response: undefined, error: [ { type: 'request', message: 'connect ECONNREFUSED' } ] }, E);
             done();
         });
     });
 
     it('should response empty string', function (done) {
-        AR.one({
+        var I = {
             url: baseurl + PATHS.NULL
-        }, function (E) {
+        };
+
+        AR.one(I, function (E) {
             assert.property(E, 'request');
             assert.property(E, 'response');
             delete E.request;
             delete E.response;
-            assert.deepEqual({ body: '', error:[]}, E);
+            assert.deepEqual({ input: I, body: '', error:[]}, E);
             done();
         });
     });
@@ -99,12 +102,10 @@ describe('Request.promiseAll', function () {
     after(cleanFakeHTTP);
 
     it('should handle all request', function (done) {
-        AR.promiseAll([{
-            url: baseurl + PATHS.ABCDEF,
-            json: true
-        },{
-            url: NoConnectURL
-        }]).then(function (E) {
+        var R1 = {url: baseurl + PATHS.ABCDEF, json: true},
+            R2 = {url: NoConnectURL};
+
+        AR.promiseAll([R1, R2]).then(function (E) {
             assert.property(E[0], 'request');
             assert.property(E[0], 'response');
             delete E[0].request;
@@ -112,8 +113,8 @@ describe('Request.promiseAll', function () {
             assert.property(E[1], 'request');
             delete E[1].request;
             assert.deepEqual([
-                {error: [], body: {abc: '123', def: 0}},
-                {error: [ { type: 'request', message: 'connect ECONNREFUSED' } ], response: undefined, body: undefined}
+                {input: R1, error: [], body: {abc: '123', def: 0}},
+                {input: R2, error: [ { type: 'request', message: 'connect ECONNREFUSED' } ], response: undefined, body: undefined}
             ], E);
             done();
         });
@@ -125,12 +126,10 @@ describe('Request.all', function () {
     after(cleanFakeHTTP);
 
     it('should handle all request', function (done) {
-        AR.all([{
-            url: baseurl + PATHS.ABCDEF,
-            json: true
-        }, {
-            url: NoConnectURL
-        }], function (E) {
+        var R1 = {url: baseurl + PATHS.ABCDEF, json: true},
+            R2 = {url: NoConnectURL};
+
+        AR.all([R1, R2], function (E) {
             assert.property(E[0], 'request');
             assert.property(E[0], 'response');
             delete E[0].request;
@@ -138,8 +137,8 @@ describe('Request.all', function () {
             assert.property(E[1], 'request');
             delete E[1].request;
             assert.deepEqual([
-                {error: [], body: {abc: '123', def: 0}},
-                {error: [ { type: 'request', message: 'connect ECONNREFUSED' } ], response: undefined, body: undefined}
+                {input: R1, error: [], body: {abc: '123', def: 0}},
+                {input: R2, error: [ { type: 'request', message: 'connect ECONNREFUSED' } ], response: undefined, body: undefined}
             ], E);
             done();
         });
