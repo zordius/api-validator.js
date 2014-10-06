@@ -73,4 +73,12 @@ describe('Save.one', function () {
         assert.equal('{"status":"OK"}', fs.readFileSync(F, 'utf8'));
         done();
     });
+
+    it('should save JSON with 2 spacing indent', function (done) {
+        var F = 'output_dir/test3.json';
+
+        AS.one(F, {a: {b: 'c'}}, {space: '  '});
+        assert.equal('{\n  "a": {\n    "b": "c"\n  }\n}', fs.readFileSync(F, 'utf8'));
+        done();
+    });
 });
