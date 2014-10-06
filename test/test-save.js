@@ -3,6 +3,7 @@
 var assert = require('chai').assert,
     fs = require('fs'),
     mockfs = require('mock-fs'),
+    lodash = require('lodash'),
     AS = require('../api-validator.js').save,
 
     initMockFS = function () {
@@ -79,6 +80,16 @@ describe('Save.one', function () {
 
         AS.one(F, {a: {b: 'c'}}, {space: '  '});
         assert.equal('{\n  "a": {\n    "b": "c"\n  }\n}', fs.readFileSync(F, 'utf8'));
+        done();
+    });
+
+    it ('should save JSON with provided replacer', function (done) {
+        var F = 'output_dir/test3.json';
+
+        AS.one(F, {a: 'c', b: 2, c: '3'}, {replacer: function (K, V) {
+            return lodash.isNumber(V) ? AS.format(V) : V;
+        }});
+        assert.equal('{\n    "a": "c",\n    "b": "0002",\n    "c": "3"\n}', fs.readFileSync(F, 'utf8'));
         done();
     });
 });
