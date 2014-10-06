@@ -8,6 +8,7 @@ var assert = require('chai').assert,
 
     initMockFS = function () {
         mockfs({
+            output: {},
             output_dir: {}
         });
     },
@@ -33,14 +34,14 @@ describe('Save.format', function () {
 
 describe('Save.namer', function () {
     it('should return default name for first item', function (done) {
-        assert.equal('output/file_0001.json', AS.namer(0));
+        assert.equal('file_0001.json', AS.namer(0));
         done();
     });
 
     it('should return name by provided options', function (done) {
-        assert.equal('output/file_0004.js', AS.namer(3, null, {ext: '.js'}));
-        assert.equal('output/result_0004.js', AS.namer(3, null, {ext: '.js', prefix: 'result_'}));
-        assert.equal('../schemas/result_0004.js', AS.namer(3, null, {ext: '.js', prefix: 'result_', basedir: '../schemas'}));
+        assert.equal('file_0004.js', AS.namer(3, null, {ext: '.js'}));
+        assert.equal('result_0004.js', AS.namer(3, null, {ext: '.js', prefix: 'result_'}));
+        assert.equal('../schemas/result_0004.js', AS.namer(3, null, {ext: '.js', prefix: '../schemas/result_'}));
         done();
     });
 });
@@ -62,7 +63,7 @@ describe('Save.one', function () {
     it('should save JSON with default options', function (done) {
         var F = 'output_dir/test.json';
 
-        AS.one(F, {status: 'OK'});
+        assert.equal(undefined, AS.one(F, {status: 'OK'}));
         assert.equal('{\n    "status": "OK"\n}', fs.readFileSync(F, 'utf8'));
         done();
     });
@@ -90,6 +91,22 @@ describe('Save.one', function () {
             return lodash.isNumber(V) ? AS.format(V) : V;
         }});
         assert.equal('{\n    "a": "c",\n    "b": "0002",\n    "c": "3"\n}', fs.readFileSync(F, 'utf8'));
+        done();
+    });
+});
+
+describe('Save.all', function () {
+    before(initMockFS);
+    after(clearMockFS);
+
+    it('should return save result', function (done) {
+        assert.deepEqual({'never/saved/directory': {error: [{
+            type: 'save',
+            message: "ENOENT, no such file or directory 'file_never/saved/directory.json'",
+        }]}}, AS.all({
+            'test_json': {a: 'OK!'},
+            'never/saved/directory': {}
+        }));
         done();
     });
 });
