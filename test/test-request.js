@@ -119,3 +119,29 @@ describe('Request.promiseAll', function () {
         });
     });
 });
+
+describe('Request.all', function () {
+    before(setupFakeHTTP);
+    after(cleanFakeHTTP);
+
+    it('should handle all request', function (done) {
+        AR.all([{
+            url: baseurl + PATHS.ABCDEF,
+            json: true
+        }, {
+            url: NoConnectURL
+        }], function (E) {
+            assert.property(E[0], 'request');
+            assert.property(E[0], 'response');
+            delete E[0].request;
+            delete E[0].response;
+            assert.property(E[1], 'request');
+            delete E[1].request;
+            assert.deepEqual([
+                {error: [], body: {abc: '123', def: 0}},
+                {error: [ { type: 'request', message: 'connect ECONNREFUSED' } ], response: undefined, body: undefined}
+            ], E);
+            done();
+        });
+    });
+});
