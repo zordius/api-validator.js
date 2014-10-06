@@ -2,10 +2,10 @@
 'use strict';
 
 module.exports = {
-    schema: require('./lib/schema'),
-    validate: require('./lib/validate'),
     request: require('./lib/request'),
     save: require('./lib/save'),
+    schema: require('./lib/schema'),
     task: require('./lib/task'),
+    validate: require('./lib/validate'),
     runner: 'todo'
 };
