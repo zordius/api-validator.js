@@ -60,8 +60,17 @@ describe('Save.one', function () {
 
     it('should save JSON with default options', function (done) {
         var F = 'output_dir/test.json';
+
         AS.one(F, {status: 'OK'});
         assert.equal('{\n    "status": "OK"\n}', fs.readFileSync(F, 'utf8'));
+        done();
+    });
+
+    it('should save JSON without indent', function (done) {
+        var F = 'output_dir/test2.json';
+
+        AS.one(F, {status: 'OK'}, {space: ''});
+        assert.equal('{"status":"OK"}', fs.readFileSync(F, 'utf8'));
         done();
     });
 });
