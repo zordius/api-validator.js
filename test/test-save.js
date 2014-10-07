@@ -108,7 +108,9 @@ describe('Save.all', function () {
     after(clearMockFS);
 
     it('should return save result', function (done) {
-        assert.deepEqual({'never/saved/directory': {error: [{
+        assert.deepEqual({
+        _filenames: [ 'test_json', 'never/saved/directory'],
+        'never/saved/directory': {error: [{
             type: 'save',
             message: "ENOENT, no such file or directory 'never/saved/directory'",
         }]}}, AS.all({
