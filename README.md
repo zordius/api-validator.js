@@ -21,41 +21,28 @@ Features
  * List and fetch referenced remote schema files **TODO**
  * API Validation **TODO**
 
-CommonJS Usage
---------------
+Command Line Usage
+------------------
 
-**Validation**
+**Step 1. Make a plan**
 
-```javascript
-var AV = require('api-validator'),
-    result;
-
-// null means pass, or object with error information
-result = AV.validate.one({
-    data: {abc: 123}
-    schema: {
-        '$schema': 'http://json-schema.org/draft-04/schema#',
-        'type': 'object',
-        required: ['abc', 'def'],
-        properties: {
-            abc: {
-                type: 'string'
-            },
-            def: {}
-        }
-    }
-});
+```yaml
+# plan.yaml
+requestYaml: requests.yaml
 ```
 
-**Load Schema files**
+**Step 2. List requests**
 
-```javascript
-// result as { fileName1: schema1, fileName2: schema2, ... }
-var schemas = AV.schema.load(AV.findSchemaFiles('some/directory', /.+\.json/));
+```yaml
+# request.yaml
+- url: http://apihost/endpoint1
+  schema: schema_name1
+- url: http://apihost/endpoint2
+  schema: schema_name2
+```
 
-// Deal with relative `'$ref': 'file://..'`**
-// result as { 'file://path/file1': schema1, 'file://path:file2': schema2 ... }
-// id in schema will be updated
-// any '$ref' point to 'file://relative/path/another' in schema will be updated
-var schemas = AV.schema.loadRelativeFile('some/directory', /.+\.json/));
+**Step 3. Validate!**
+
+```sh
+api-validator.js plan.yaml
 ```
