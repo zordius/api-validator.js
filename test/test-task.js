@@ -90,6 +90,19 @@ describe('Task.save', function () {
             done();
         });
     });
+
+    it('should save to another namespace when context.savespace provided', function (done) {
+        AT.save({
+            saveSpace: 'test',
+            test: {
+                results: [ {test2: 'ok'} ]
+            }
+        }, function (C) {
+            assert.deepEqual({}, C.test.saveError);
+            assert.deepEqual(['file_0001.json'], C.test.savedFiles);
+            done();
+        });
+    });
 });
 
 describe('Task.validate', function () {
