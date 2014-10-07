@@ -48,28 +48,25 @@ describe('Task.fetch', function () {
     });
 
     it('should save results and return save status', function (done) {
-        AT.fetch([
+        AT.fetch({requests: [
             {url: baseurl + PATHS.NULL},
             {url: NoConnectURL},
             {url: baseurl + PATHS.ABC123},
             {url: baseurl + PATHS.ABCDEF, json: true}
-        ], {callback: function (L) {
-            assert.deepEqual({}, L);
+        ]}, function (L) {
+            assert.deepEqual({}, L.results);
             assert.deepEqual('', JSON.parse(fs.readFileSync('file_0001.json'), 'utf8').body);
             assert.deepEqual({type: 'request', message: 'connect ECONNREFUSED'}, JSON.parse(fs.readFileSync('file_0002.json'), 'utf8').error[0]);
             assert.deepEqual('{"abc":123}', JSON.parse(fs.readFileSync('file_0003.json'), 'utf8').body);
             assert.deepEqual({abc:'123', def: 0}, JSON.parse(fs.readFileSync('file_0004.json'), 'utf8').body);
             done();
-        }});
+        });
     });
 
     it('should save results and save by option', function (done) {
-        AT.fetch([{url: NoConnectURL}], {
-            prefix: 'output/',
-            callback: function () {
-                assert.deepEqual({type: 'request', message: 'connect ECONNREFUSED'}, JSON.parse(fs.readFileSync('output/0001.json'), 'utf8').error[0]);
-                done();
-            }
+        AT.fetch({requests: [{url: NoConnectURL}], prefix: 'output/'}, function () {
+            assert.deepEqual({type: 'request', message: 'connect ECONNREFUSED'}, JSON.parse(fs.readFileSync('output/0001.json'), 'utf8').error[0]);
+            done();
         });
     });
 });
