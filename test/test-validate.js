@@ -94,6 +94,22 @@ describe('Validator.all', function () {
         }]));
         done();
     });
+
+    it('should validate with provided schemas', function (done) {
+        assert.deepEqual([
+            null,
+            {"error":[{"type":"validation","target":"def","rule":{"required":true}}]}
+        ], AV.all([{
+            data: {abc: 'dev', def: 1},
+            schema: 'test'
+        }, {
+            data: {abc: 'ok'},
+            schema: 'test'
+        }], {
+            test: testSchema1
+        }));
+        done();
+    });
 });
 
 describe('Validator.selfVerify', function () {
