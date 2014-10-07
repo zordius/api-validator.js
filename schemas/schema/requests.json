@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "JSON Schema to validate an API Validator request list",
+    "id": "core://default.api/requests#",
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/request"
+    },
+    "definitions": {
+        "request": {
+            "type": "object",
+            "required": ["url"],
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        }
+    }
+}
