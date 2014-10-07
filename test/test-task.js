@@ -29,6 +29,7 @@ var assert = require('chai').assert,
 
     initMockFS = function () {
         mockfs({
+            'test.yaml': "- abc\n- def",
             output: {}
         });
     },
@@ -133,5 +134,17 @@ describe('Task.run', function () {
             assert.deepEqual([4, 1, 2], D);
             done();
         }]);
+    });
+});
+
+describe('Task.loadRequestList', function () {
+    before(initMockFS);
+    after(clearMockFS);
+
+    it('should load requests by context.requestYaml', function (done) {
+         AT.loadRequestList({requestYaml: 'test.yaml'}, function (C) {
+             assert.deepEqual({ requestYaml: 'test.yaml', requests: [ 'abc', 'def' ] }, C);
+             done();
+         });
     });
 });
