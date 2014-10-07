@@ -6,19 +6,10 @@
     "extends": {
         "$ref": "http://json-schema.org/draft-04/schema#"
     },
-    "required": ["title", "type", "properties"],
+    "required": ["requestYaml"],
     "properties": {
-        "title": {
+        "requestYaml": {
             "type": "string"
-        },
-        "$schema": {
-            "type": "string"
-        },
-        "type": {
-            "type": "string"
-        },
-        "properties": {
-            "type": "object"
         }
     }
 }

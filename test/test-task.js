@@ -148,3 +148,18 @@ describe('Task.loadRequestList', function () {
          });
     });
 });
+
+describe('Task.validatePlan', function () {
+    it('should pass plan schema', function (done) {
+        AT.validatePlan({
+            requestYaml: 'xxxx'
+        }, function () {
+            done();
+        });
+    });
+
+    it('should invalid', function (done) {
+        assert.deepProperty(AT.validatePlan({}), 'error');
+        done();
+    });
+});
