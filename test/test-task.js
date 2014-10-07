@@ -78,6 +78,22 @@ describe('Task.fetch', function () {
     });
 });
 
+describe('Task.validate', function () {
+    it('should do validation task when passed', function (done) {
+        var C = {
+            results: [{abc: 123, input: {schema: 'test'}}],
+            savedFiles: ['123.js'],
+            schemas: {test: {properties: {abc: {type: 'number'}}, required: ['abc']}}
+        };
+        AT.validate(C, function (R) {
+            assert.deepEqual({}, R.validates);
+            delete R.validates;
+            assert.deepEqual(C, R);
+            done();
+        });
+    });
+});
+
 describe('Task.run', function () {
     it('should call the tasks in the queue', function (done) {
         AT.run([1,2,3], [function (D, next) {
