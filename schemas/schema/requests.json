@@ -3,6 +3,8 @@
     "title": "JSON Schema to validate an API Validator request list",
     "id": "core://default.api/requests#",
     "type": "array",
+    "minItems": 1,
+    "uniqueItems": true,
     "items": {
         "$ref": "#/definitions/request"
     },
