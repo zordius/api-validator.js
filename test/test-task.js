@@ -73,3 +73,18 @@ describe('Task.fetch', function () {
         });
     });
 });
+
+describe('Task.run', function () {
+    it('should call the tasks in the queue', function (done) {
+        AT.run([1,2,3], [function (D, next) {
+            D.pop();
+            next(D);
+        }, function (D, next) {
+            D.unshift(4);
+            next(D);
+        }, function (D, next) {
+            assert.deepEqual([4, 1, 2], D);
+            done();
+        }]);
+    });
+});

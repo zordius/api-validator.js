@@ -1,0 +1,3 @@
+- url: http://fake.com/test1
+- url: http://fake.com/test2
+  schema: test

@@ -24,7 +24,8 @@
     "lodash": "2.4.1",
     "request": "2.31.0",
     "traverse": "0.6.6",
-    "when": "3.2.2"
+    "when": "3.2.2",
+    "yamljs": "0.2.0"
   },
   "scripts": {
     "build_std": "browserify api-validator.js -s APIValidator -o dist/apivalidator.js",
