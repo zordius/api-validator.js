@@ -227,6 +227,10 @@ describe('Task.run', function () {
 
     it('should execute a good plan', function (done) {
         AT.run('test/yaml/plan.yaml', function (D) {
+            assert.deepEqual([
+               'file_0001.json',
+               'file_0002.json'
+            ], D.savedFiles);
             done();
         });
     });
