@@ -159,7 +159,36 @@ describe('Task.validatePlan', function () {
     });
 
     it('should invalid', function (done) {
-        assert.deepProperty(AT.validatePlan({}), 'error');
-        done();
+        try {
+            AT.validatePlan({});
+        } catch (E) {
+            assert.deepProperty(E, 'error');
+            done();
+        }
+    });
+});
+
+describe('Task.validateRequests', function () {
+    it('should pass requests schema', function (done) {
+        AT.validateRequests({
+            requests: [{
+                url: 'http://this.is.ok/'
+            }]
+        }, function () {
+            done();
+        });
+    });
+
+    it('should invalid', function (done) {
+        try {
+            AT.validateRequests({
+                requests: [{
+                    url: 'badurl'
+                }]
+            })
+        } catch (E) {
+            assert.deepProperty(E, 'error');
+            done();
+        }
     });
 });

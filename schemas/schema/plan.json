@@ -3,9 +3,6 @@
     "title": "JSON Schema to validate an API Validator plan",
     "id": "core://default.api/plan#",
     "type": "object",
-    "extends": {
-        "$ref": "http://json-schema.org/draft-04/schema#"
-    },
     "required": ["requestYaml"],
     "properties": {
         "requestYaml": {
