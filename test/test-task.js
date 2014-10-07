@@ -37,42 +37,56 @@ var assert = require('chai').assert,
         mockfs.restore();
     };
 
-describe('Task.fetch', function () {
-    before(function () {
-        initMockFS();
-        setupFakeHTTP();
-    });
-    after(function () {
-        clearMockFS();
-        cleanFakeHTTP();
-    });
+describe('Task.request', function () {
+    before(setupFakeHTTP);
+    after(cleanFakeHTTP);
 
-    it('should save results and return save status', function (done) {
-        AT.fetch({requests: [
+    it('should update context.results', function (done) {
+        AT.request({requests: [
             {url: baseurl + PATHS.NULL},
             {url: NoConnectURL},
             {url: baseurl + PATHS.ABC123},
             {url: baseurl + PATHS.ABCDEF, json: true}
         ]}, function (L) {
             assert.equal('', L.results[0].body);
-            assert.deepEqual({}, L.saveError);
-            assert.deepEqual([
-                'file_0001.json',
-                'file_0002.json',
-                'file_0003.json',
-                'file_0004.json'
-            ], L.savedFiles);
-            assert.deepEqual('', JSON.parse(fs.readFileSync('file_0001.json'), 'utf8').body);
-            assert.deepEqual({type: 'request', message: 'connect ECONNREFUSED'}, JSON.parse(fs.readFileSync('file_0002.json'), 'utf8').error[0]);
-            assert.deepEqual('{"abc":123}', JSON.parse(fs.readFileSync('file_0003.json'), 'utf8').body);
-            assert.deepEqual({abc:'123', def: 0}, JSON.parse(fs.readFileSync('file_0004.json'), 'utf8').body);
+            assert.deepEqual({type: 'request', message: 'connect ECONNREFUSED'}, L.results[1].error[0]);
+            assert.deepEqual('{"abc":123}', L.results[2].body);
+            assert.deepEqual({abc:'123', def: 0}, L.results[3].body);
+            done();
+        });
+    });
+});
+
+describe('Task.save', function () {
+    before(initMockFS);
+    after(clearMockFS);
+
+    it('should save files', function (done) {
+        AT.save({results: [
+            'test1',
+            {test: 'ok'}
+        ]}, function () {
+            assert.deepEqual('test1', JSON.parse(fs.readFileSync('file_0001.json'), 'utf8'));
+            assert.deepEqual({test: 'ok'}, JSON.parse(fs.readFileSync('file_0002.json'), 'utf8'));
             done();
         });
     });
 
-    it('should save results and save by option', function (done) {
-        AT.fetch({requests: [{url: NoConnectURL}], prefix: 'output/'}, function () {
-            assert.deepEqual({type: 'request', message: 'connect ECONNREFUSED'}, JSON.parse(fs.readFileSync('output/0001.json'), 'utf8').error[0]);
+    it('should save files with options', function (done) {
+        AT.save({results: [
+            {test2: 'ok'}
+        ], prefix: 'output/'}, function () {
+            assert.deepEqual({test2: 'ok'}, JSON.parse(fs.readFileSync('output/0001.json'), 'utf8'));
+            done();
+        });
+    });
+
+    it('should update context.savedFiles and saveError', function (done) {
+        AT.save({results: [
+            {test2: 'ok'}
+        ], prefix: 'output/'}, function (C) {
+            assert.deepEqual(['output/0001.json'], C.savedFiles);
+            assert.deepEqual({}, C.saveError);
             done();
         });
     });
