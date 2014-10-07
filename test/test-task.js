@@ -122,9 +122,9 @@ describe('Task.validate', function () {
     });
 });
 
-describe('Task.run', function () {
-    it('should call the tasks in the queue', function (done) {
-        AT.run([1,2,3], [function (D, next) {
+describe('Task.reduce', function () {
+    it('should run all tasks in the queue', function (done) {
+        AT.reduce([1,2,3], [function (D, next) {
             D.pop();
             next(D);
         }, function (D, next) {
