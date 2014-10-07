@@ -75,43 +75,6 @@ describe('Validator.one', function () {
     });
 });
 
-describe('Validator.all', function () {
-    it('should be failed as input error', function (done) {
-        assert.deepEqual({"error":[{"type":"input","message":"Input is not array for AValidator.all"}]}, AV.all({}));
-        done();
-    });
-
-    it('should return array of validation results', function (done) {
-        assert.deepEqual([
-            null,
-            {"error":[{"type":"validation","target":"def","rule":{"required":true}}]}
-        ], AV.all([{
-            data: {abc: 'dev', def: 1},
-            schema: testSchema1
-        }, {
-            data: {abc: 'ok'},
-            schema: testSchema1
-        }]));
-        done();
-    });
-
-    it('should validate with provided schemas', function (done) {
-        assert.deepEqual([
-            null,
-            {"error":[{"type":"validation","target":"def","rule":{"required":true}}]}
-        ], AV.all([{
-            data: {abc: 'dev', def: 1},
-            schema: 'test'
-        }, {
-            data: {abc: 'ok'},
-            schema: 'test'
-        }], {
-            test: testSchema1
-        }));
-        done();
-    });
-});
-
 describe('Validator.selfVerify', function () {
     it('should passed all core schemas', function (done) {
         assert.deepEqual({}, AV.selfVerify(AS.loadCoreSchemas()));
