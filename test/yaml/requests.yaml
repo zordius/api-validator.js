@@ -1,3 +1,4 @@
-- url: http://fake.com/test1
-- url: http://fake.com/test2
+- url: http://fake.host/getJsonAbc123
+  schema: test2
+- url: http://fake.host/getJsonAbcDef
   schema: test

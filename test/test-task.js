@@ -120,6 +120,22 @@ describe('Task.validate', function () {
             done();
         });
     });
+
+    it('should do validation task when not passed', function (done) {
+        var C = {
+            results: [{abc: 123, input: {schema: 'test_what'}}],
+            savedFiles: ['123.js']
+        };
+        AT.validate(C, function (R) {
+            assert.deepEqual({
+                '123.js': {error: [{
+                    message: 'can not find schema "test_what"',
+                    type: 'schemas'
+                }]}
+            }, R.validates);
+            done();
+        });
+    });
 });
 
 describe('Task.reduce', function () {
@@ -206,16 +222,12 @@ describe('Task.validateRequests', function () {
 });
 
 describe('Task.run', function () {
-    before(initMockFS);
-    after(clearMockFS);
+    before(setupFakeHTTP);
+    after(cleanFakeHTTP);
 
     it('should execute a good plan', function (done) {
-        try {
         AT.run('test/yaml/plan.yaml', function (D) {
             done();
         });
-} catch (E) {
-console.log(E);
-}
     });
 });
