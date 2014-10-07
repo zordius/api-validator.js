@@ -149,6 +149,18 @@ describe('Task.loadRequestList', function () {
     });
 });
 
+describe('Task.loadPlan', function () {
+    before(initMockFS);
+    after(clearMockFS);
+
+    it('should load plan success', function (done) {
+         AT.loadPlan('test.yaml', function (C) {
+             assert.deepEqual([ 'abc', 'def' ], C);
+             done();
+         });
+    });
+});
+
 describe('Task.validatePlan', function () {
     it('should pass plan schema', function (done) {
         AT.validatePlan({
@@ -190,5 +202,20 @@ describe('Task.validateRequests', function () {
             assert.deepProperty(E, 'error');
             done();
         }
+    });
+});
+
+describe('Task.run', function () {
+    before(initMockFS);
+    after(clearMockFS);
+
+    it('should execute a good plan', function (done) {
+        try {
+        AT.run('test/yaml/plan.yaml', function (D) {
+            done();
+        });
+} catch (E) {
+console.log(E);
+}
     });
 });

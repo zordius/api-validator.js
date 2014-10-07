@@ -24,15 +24,4 @@ SOFTWARE.
 /*jslint node: true */                                                                         
 'use strict';
 
-var AV = require('./'),
-    yaml = require('yamljs'),
-    plan = process.argv[1];
-
-AV.task.run(plan, [
-    yaml.load,
-    AV.task.loadRequestList,
-    AV.task.request,
-    AV.task.save,
-    AV.task.validate,
-    AV.task.report
-]);
+require('./').task.run(process.argv[2]);
