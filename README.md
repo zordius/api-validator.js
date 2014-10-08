@@ -23,7 +23,7 @@ Features
  * API Validation
 * Customize
  * Authorize requests **TODO**
- * test on <a href="">YQL tables</a> **TODO**
+ * test on <a href="https://developer.yahoo.com/yql/">YQL tables</a> **TODO**
  * test by API blueprint **TODO**
 
 Command Line Usage
