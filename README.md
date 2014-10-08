@@ -51,3 +51,19 @@ requestConfig:
 ```sh
 api-validator.js plan.yaml
 ```
+
+Will output full context and exit with 0 when pass.
+
+**Step 4. (optional) Run with Mocha**
+
+Run with mocha then you can using any mocha reporter to see test results. You need to prepare a test.js like this:
+
+```javascript
+require('api-reporter').task.mocha('plan.yaml');
+```
+
+Then run mocha:
+
+```shell
+mocha -R spec test.js
+```
