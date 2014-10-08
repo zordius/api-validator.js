@@ -26,6 +26,12 @@ SOFTWARE.
 
 process.env.TAP = true;
 
+if (process.argv.length < 3) {
+    console.warn('Usage: ' + process.argv[1] + ' path/to/plan.yaml');
+    process.exit(2);
+}
+
 require('./').task.run(process.argv[2], function (C) {
     console.log(JSON.stringify(C, null, ' '));
+    process.exit(C.pass ? 0 : 1);
 });
