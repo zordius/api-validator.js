@@ -32,6 +32,8 @@ requestYaml: requests.yaml
 schemaDir: mySchema/path
 prefix: myResults/output/file_
 reportJSON: finalReport/file.json
+requestConfig:
+  timeout: 500
 ```
 
 **Step 2. List requests**

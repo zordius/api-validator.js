@@ -13,7 +13,7 @@
             "type": "string"
         },
         "requestConfig": {
-            "$ref": "core://default.api/requests#/definitions/request"
+            "$ref": "core://default.api/requests#/definitions/requestConfig"
         },
         "schemaDir": {
             "type": "string"

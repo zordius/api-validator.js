@@ -14,8 +14,13 @@
             "enum": ["GET", "POST", "PUT", "DELETE"]
         },
         "request": {
+            "extends": {
+                "$ref": "#definitions/requestConfig"
+            },
+            "required": ["url"]
+        },
+        "requestConfig": {
             "type": "object",
-            "required": ["url"],
             "properties": {
                 "url": {
                     "type": "string",
