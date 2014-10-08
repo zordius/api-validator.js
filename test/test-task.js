@@ -5,7 +5,9 @@ var assert = require('chai').assert,
     mockfs = require('mock-fs'),
     nock = require('nock'),
     lodash = require('lodash'),
-    AT = require('../api-validator.js').task,
+    AV = require('../api-validator.js'),
+    AS = AV.schema,
+    AT = AV.task,
 
     baseurl = 'http://fake.host',
     NoConnectURL = 'http://localhost:1/',
@@ -171,6 +173,7 @@ describe('Task.loadPlan', function () {
 
     it('should load plan success', function (done) {
          AT.loadPlan('test.yaml', function (C) {
+             delete C.schemas;
              assert.deepEqual([ 'abc', 'def' ], C);
              done();
          });
@@ -208,7 +211,8 @@ describe('Task.validateRequests', function () {
         AT.validateRequests({
             requests: [{
                 url: 'http://this.is.ok/'
-            }]
+            }],
+            schemas: AS.loadCoreSchemas()
         }, function (C) {
             assert.equal(undefined, C.abort);
             done();

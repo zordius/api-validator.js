@@ -30,6 +30,8 @@ Command Line Usage
 # plan.yaml
 requestYaml: requests.yaml
 schemaDir: mySchema/path
+prefix: myResults/output/file_
+reportJSON: finalReport/file.json
 ```
 
 **Step 2. List requests**
