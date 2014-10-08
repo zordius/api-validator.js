@@ -4,6 +4,7 @@
     "id": "core://default.api/plan#",
     "type": "object",
     "required": ["requestYaml"],
+    "additionalProperties": false,
     "properties": {
         "requestYaml": {
             "type": "string"
@@ -20,7 +21,9 @@
         "reportJSON": {
             "type": "string"
         },
-        "additionalProperties": false
+        "schemas": {
+            "type": "object"
+        }
     },
     "definitions": {
     }
