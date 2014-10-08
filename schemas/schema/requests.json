@@ -6,12 +6,21 @@
     "minItems": 1,
     "uniqueItems": true,
     "items": {
-        "$ref": "#/definitions/request"
+        "oneOf": [
+           { "$ref": "#/definitions/request" },
+           { "$ref": "#/definitions/yqlrequest" }
+        ]
     },
     "definitions": {
         "method": {
             "type": "string",
             "enum": ["GET", "POST", "PUT", "DELETE"]
+        },
+        "yqlrequest": {
+            "extends": {
+                "$ref": "#definitions/requestConfig"
+            },
+            "required": ["yql"]
         },
         "request": {
             "extends": {
