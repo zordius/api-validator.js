@@ -15,11 +15,16 @@ Features
  * describe API request and JSON Schema pairs by yaml file
  * make API requests and save response as json files
  * validate on these response
- * output validation results (powered by <a href="https://github.com/visionmedia/mocha">mocha</a> reports) **TODO**
+ * output validation results
+ * output different test report formats (powered by <a href="https://github.com/visionmedia/mocha">mocha</a> reports)
 * Command line tool
  * Validate your schema files **TODO**
  * List and fetch referenced remote schema files **TODO**
- * API Validation **TODO**
+ * API Validation
+* Customize
+ * Authorize requests **TODO**
+ * test on <a href="">YQL tables</a> **TODO**
+ * test by API blueprint **TODO**
 
 Command Line Usage
 ------------------
