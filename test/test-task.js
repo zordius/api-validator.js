@@ -175,6 +175,14 @@ describe('Task.loadPlan', function () {
              done();
          });
     });
+
+    it('should load plan error', function (done) {
+         AT.loadPlan('test2.yaml', function (C) {
+             assert.deepEqual('Can not load plan yaml file: "test2.yaml"', C.error);
+             assert.equal(true, C.abort);
+             done();
+         });
+    });
 });
 
 describe('Task.validatePlan', function () {
@@ -187,12 +195,11 @@ describe('Task.validatePlan', function () {
     });
 
     it('should invalid', function (done) {
-        try {
-            AT.validatePlan({});
-        } catch (E) {
-            assert.deepProperty(E, 'error');
+        AT.validatePlan({}, function (C) {
+            assert.deepProperty(C, 'error');
+            assert.equal(true, C.abort);
             done();
-        }
+        });
     });
 });
 
@@ -202,22 +209,22 @@ describe('Task.validateRequests', function () {
             requests: [{
                 url: 'http://this.is.ok/'
             }]
-        }, function () {
+        }, function (C) {
+            assert.equal(undefined, C.abort);
             done();
         });
     });
 
     it('should invalid', function (done) {
-        try {
-            AT.validateRequests({
-                requests: [{
-                    url: 'badurl'
-                }]
-            })
-        } catch (E) {
-            assert.deepProperty(E, 'error');
+        AT.validateRequests({
+            requests: [{
+                url: 'badurl'
+            }]
+        }, function (C) {
+            assert.deepProperty(C, 'error');
+            assert.equal(true, C.abort);
             done();
-        }
+        });
     });
 });
 

@@ -24,4 +24,8 @@ SOFTWARE.
 /*jslint node: true */                                                                         
 'use strict';
 
-require('./').task.run(process.argv[2]);
+process.env.TAP = true;
+
+require('./').task.run(process.argv[2], function () {
+    console.log('OK!');
+});

@@ -29,6 +29,7 @@ Command Line Usage
 ```yaml
 # plan.yaml
 requestYaml: requests.yaml
+schemaDir: mySchema/path
 ```
 
 **Step 2. List requests**
