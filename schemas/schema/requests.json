@@ -9,6 +9,10 @@
         "$ref": "#/definitions/request"
     },
     "definitions": {
+        "method": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "DELETE"]
+        },
         "request": {
             "type": "object",
             "required": ["url"],
@@ -16,6 +20,15 @@
                 "url": {
                     "type": "string",
                     "format": "uri"
+                },
+                "timeout": {
+                    "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger"
+                },
+                "qs": {
+                    "type": "object"
+                },
+                "method": {
+                    "$ref": "#/definitions/method"
                 }
             }
         }

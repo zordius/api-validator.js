@@ -11,6 +11,11 @@
         "prefix": {
             "type": "string"
         },
+        "requestConfig": {
+            "$ref": "core://default.api/requests#/definitions/request"
+        },
         "additionalProperties": false
+    },
+    "definitions": {
     }
 }
