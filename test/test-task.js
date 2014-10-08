@@ -175,6 +175,7 @@ describe('Task.loadPlan', function () {
          AT.loadPlan('test.yaml', function (C) {
              delete C.schemas;
              delete C.pass;
+             delete C.planName;
              assert.deepEqual(['abc', 'def'], C);
              done();
          });

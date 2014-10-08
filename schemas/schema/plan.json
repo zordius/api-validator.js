@@ -3,7 +3,7 @@
     "title": "JSON Schema to validate an API Validator plan",
     "id": "core://default.api/plan#",
     "type": "object",
-    "required": ["requestYaml"],
+    "required": ["requestYaml", "planName"],
     "additionalProperties": false,
     "properties": {
         "requestYaml": {
@@ -26,6 +26,12 @@
         },
         "pass": {
             "enum": [false]
+        },
+        "planName": {
+            "type": "string"
+        },
+        "verbose": {
+            "enum": [true]
         }
     },
     "definitions": {

@@ -1,3 +1,4 @@
 requestYaml: test/yaml/requests.yaml
+verbose: true
 requestConfig:
   timeout: 10

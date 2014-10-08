@@ -7,5 +7,5 @@ module.exports = {
     schema: require('./lib/schema'),
     task: require('./lib/task'),
     validate: require('./lib/validate'),
-    runner: 'todo'
+    mocha: require('./lib/mocha')
 };

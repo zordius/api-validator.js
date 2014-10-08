@@ -49,17 +49,17 @@ requestConfig:
 **Step 3. Validate!**
 
 ```sh
-api-validator.js plan.yaml
+api-validator.js plan.yaml > results.json
 ```
 
-Will output full context and exit with 0 when pass.
+Will output full context into results.json and exit with 0 when pass.
 
 **Step 4. (optional) Run with Mocha**
 
 Run with mocha then you can using any mocha reporter to see test results. You need to prepare a test.js like this:
 
 ```javascript
-require('api-reporter').task.mocha('plan.yaml');
+require('api-reporter').mocha('results.json');
 ```
 
 Then run mocha:
