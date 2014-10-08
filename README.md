@@ -65,5 +65,5 @@ require('api-reporter').mocha('results.json');
 Then run mocha:
 
 ```shell
-mocha -R spec test.js
+mocha test.js
 ```
