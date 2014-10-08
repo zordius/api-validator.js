@@ -26,6 +26,6 @@ SOFTWARE.
 
 process.env.TAP = true;
 
-require('./').task.run(process.argv[2], function () {
-    console.log('OK!');
+require('./').task.run(process.argv[2], function (C) {
+    console.log(JSON.stringify(C, null, ' '));
 });
