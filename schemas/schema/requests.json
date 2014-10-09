@@ -26,14 +26,7 @@
                     "type": "string"
                 },
                 "yqlConfig": {
-                    "type": "object",
-                    "required": ["endpoint"],
-                    "properties": {
-                        "endpoint": {
-                            "type": "string",
-                            "default": "https://query.yahooapis.com/v1/public/yql"
-                        }
-                    }
+                    "$ref": "#definitions/yqlConfig"
                 }
             }
         },
@@ -58,6 +51,19 @@
                 },
                 "method": {
                     "$ref": "#/definitions/method"
+                },
+                "yqlConfig": {
+                    "$ref": "#/definitions/yqlConfig"
+                }
+            }
+        },
+        "yqlConfig": {
+            "type": "object",
+            "required": ["endpoint"],
+            "properties": {
+                "endpoint": {
+                    "type": "string",
+                    "default": "https://query.yahooapis.com/v1/public/yql"
                 }
             }
         }
