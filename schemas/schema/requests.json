@@ -3,7 +3,7 @@
     "title": "JSON Schema to validate an API Validator request list",
     "id": "core://default.api/requests#",
     "allOf": [
-        { "$ref": "core://default.api/common#definitions/uniqueArray" },
+        { "$ref": "core://default.api/common#/definitions/uniqueArray" },
         {
             "items": {
                 "oneOf": [
@@ -19,28 +19,24 @@
             "enum": ["GET", "POST", "PUT", "DELETE"]
         },
         "yqlrequest": {
-            "allOf": [
-                { "$ref": "#/definitions/requestConfig" },
-                {
-                    "required": ["yql"],
-                    "properties": {
-                        "yql": {
-                            "$ref": "core://yahoo.com/yql#/definitions/statement"
-                        },
-                        "yqlConfig": {
-                            "$ref": "#/definitions/yqlConfig"
-                        }
-                    }
-                }
-            ]
+            "required": ["yql"],
+            "properties": {
+                 "yql": {
+                     "$ref": "core://yahoo.com/yql#/definitions/statement"
+                 },
+                 "yqlConfig": {
+                     "$ref": "#/definitions/yqlConfig"
+                 }
+            },
+            "dependencies": {
+                "yql": { "$ref": "#/definitions/requestConfig" }
+            }
         },
         "request": {
-            "allOf": [
-                { "$ref": "#/definitions/requestConfig" },
-                {
-                    "required": [ "url" ]
-                }
-            ]
+            "required": [ "url" ],
+            "dependencies": {
+                "url": { "$ref": "#/definitions/requestConfig" }
+            }
         },
         "requestConfig": {
             "type": "object",
@@ -60,8 +56,7 @@
                 "yqlConfig": {
                     "$ref": "#/definitions/yqlConfig"
                 }
-            },
-            "additionalProperties": false
+            }
         },
         "yqlConfig": {
             "type": "object",
@@ -75,7 +70,7 @@
         },
         "processed": {
             "allOf": [
-                { "$ref": "core://default.api/strict#/definitions/uniqueArray" },
+                { "$ref": "core://default.api/common#/definitions/uniqueArray" },
                 {
                     "items": { "$ref": "#/definitions/request" }
                 }

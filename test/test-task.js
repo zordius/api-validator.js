@@ -280,12 +280,10 @@ describe('Task.validateRequests', function () {
 
     it('should invalid when url in bad format', function (done) {
         AT.validateRequests({
-            requests: 
-                {url: '123', abc: 0},
-            schemas: AS.loadCoreSchemas()
+            requests: [
+                {url: '123'}
+            ], schemas: AS.loadCoreSchemas()
         }, function (C) {
-console.log('!!!!!!!!!!!!!!!!!!!!!');
-console.log(JSON.stringify(C.error, undefined, ' '));
             assert.deepProperty(C, 'error');
             assert.equal(true, C.abort);
             done();
