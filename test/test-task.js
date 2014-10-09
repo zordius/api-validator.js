@@ -213,6 +213,35 @@ describe('Task.validatePlan', function () {
 describe('Task.preValidateRequests', function () {
     it('should pass requests schema', function (done) {
         AT.preValidateRequests({
+            requests: [
+                { url: 'http://this.is.ok/' },
+                { yql: 'show tables' }
+            ],
+            schemas: AS.loadCoreSchemas()
+        }, function (C) {
+            assert.equal(undefined, C.abort);
+            done();
+        });
+    });
+
+    it('should invalid when both url and yql provided', function (done) {
+        AT.preValidateRequests({
+            requests: [{
+                url: 'http://this.is.ok',
+                yql: 'show tables'
+            }],
+            schemas: AS.loadCoreSchemas()
+        }, function (C) {
+            assert.deepProperty(C, 'error');
+            assert.equal(true, C.abort);
+            done();
+        });
+    });
+});
+
+describe('Task.validateRequests', function () {
+    it('should pass requests schema', function (done) {
+        AT.validateRequests({
             requests: [{
                 url: 'http://this.is.ok/'
             }],
@@ -224,10 +253,11 @@ describe('Task.preValidateRequests', function () {
     });
 
     it('should invalid', function (done) {
-        AT.preValidateRequests({
+        AT.validateRequests({
             requests: [{
-                url: 'badurl'
-            }]
+                yql: 'show table'
+            }],
+            schemas: AS.loadCoreSchemas()
         }, function (C) {
             assert.deepProperty(C, 'error');
             assert.equal(true, C.abort);

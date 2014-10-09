@@ -20,10 +20,10 @@
             "extends": {
                 "$ref": "#definitions/requestConfig"
             },
-            "required": ["yql", "yqlConfig"],
+            "required": ["yql"],
             "properties": {
                 "yql": {
-                    "type": "string"
+                    "$ref": "core://yahoo.com/yql#/definitions/statement"
                 },
                 "yqlConfig": {
                     "$ref": "#definitions/yqlConfig"
