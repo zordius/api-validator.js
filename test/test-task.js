@@ -215,7 +215,7 @@ describe('Task.preValidateRequests', function () {
         AT.preValidateRequests({
             requests: [
                 { url: 'http://this.is.ok/' },
-                { yql: 'show tables', yqlConfig: {} }
+                { yql: 'show tables', yqlConfig: {endpoint: "ok"} }
             ],
             schemas: AS.loadCoreSchemas()
         }, function (C) {

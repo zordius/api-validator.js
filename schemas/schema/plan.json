@@ -13,7 +13,16 @@
             "type": "string"
         },
         "requestConfig": {
-            "$ref": "core://default.api/requests#/definitions/requestConfig"
+            "$ref": "core://default.api/requests#/definitions/requestConfig",
+            "default": {
+                "yqlConfig": {
+                    "endpoint": "https://query.yahooapis.com/v1/public/yql",
+                    "qs": {
+                        "format": "json",
+                        "diagnostics": true
+                    }
+                }
+            }
         },
         "schemaDir": {
             "type": "string"
