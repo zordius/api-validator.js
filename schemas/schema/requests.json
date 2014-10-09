@@ -19,16 +19,21 @@
             "enum": ["GET", "POST", "PUT", "DELETE"]
         },
         "yqlrequest": {
-            "required": ["yql"],
+            "required": ["yql", "yqlConfig"],
+            "not": {
+                "required": [ "url" ]
+            },
             "dependencies": {
                 "yql": {
-                    "$ref": "#/definitions/requestConfig",
-                    "required": ["yqlConfig"]
+                    "$ref": "#/definitions/requestConfig"
                 }
             }
         },
         "request": {
             "required": [ "url" ],
+            "not": {
+                "required": [ "yql" ]
+            },
             "dependencies": {
                 "url": { "$ref": "#/definitions/requestConfig" }
             }
