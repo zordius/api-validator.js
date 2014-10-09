@@ -34,7 +34,10 @@ var assert = require('chai').assert,
             abc: {
                 type: 'string'
             },
-            def: {}
+            def: {},
+            ghi: {
+                default: 'DEFAULT'
+            }
         }
     };
 
@@ -71,6 +74,16 @@ describe('Validator.one', function () {
             schemas: {abcde123: testSchema1},
             schema: 'abcde123'
         }));
+        done();
+    });
+
+    it('should set default value', function (done) {
+        var O = {
+            data: {abc: '1', def: 0},
+            schema: testSchema1
+        };
+        assert.equal(undefined, AV.one(O, {useDefault: true}));
+        assert.equal('DEFAULT', O.data.ghi);
         done();
     });
 });
