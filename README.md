@@ -6,8 +6,17 @@ A nodejs lib and command line tool powered by JSON Schema to validate web API ou
 [![npm version](https://img.shields.io/npm/v/api-validator.svg)](https://www.npmjs.org/package/api-validator) [![Dependency Status](https://david-dm.org/zordius/api-validator.js.png)](https://david-dm.org/zordius/api-validator.js)  [![Build Status](https://travis-ci.org/zordius/api-validator.js.svg?branch=master)](https://travis-ci.org/zordius/api-validator.js) [![Code Climate](https://codeclimate.com/github/zordius/api-validator.js/badges/gpa.svg)](https://codeclimate.com/github/zordius/api-validator.js) [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
 
 ```sh
+# What api-validator.js do:
 [Test Plan] -> [API Request Lists] -> [Make Requests] +
-                               [API Response Schemas] + -> [Validation!]
+                               [API Response Schemas] + -> [Validation!] = [CI for API!]
+```
+
+```sh
+# In future the whole picture:
+[API Spec] -> [Document generation]
+           -> [Mock API Server]
+           -> [API Request Lists] -> [Make Requests] +
+                              [API Response Schemas] + -> [Validation!] = [CI for API!]
 ```
 
 Features
