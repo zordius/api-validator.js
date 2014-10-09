@@ -21,6 +21,10 @@
         "reportJSON": {
             "type": "string"
         },
+        "requestHelper": {
+            "type": "string",
+            "default": "./requestHelper"
+        },
         "schemas": {
             "type": "object"
         },

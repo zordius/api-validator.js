@@ -174,7 +174,6 @@ describe('Task.loadPlan', function () {
     it('should load plan success', function (done) {
          AT.loadPlan('test.yaml', function (C) {
              delete C.schemas;
-             delete C.pass;
              delete C.planName;
              assert.deepEqual(['abc', 'def'], C);
              done();
@@ -193,8 +192,11 @@ describe('Task.loadPlan', function () {
 describe('Task.validatePlan', function () {
     it('should pass plan schema', function (done) {
         AT.validatePlan({
-            requestYaml: 'xxxx'
-        }, function () {
+            requestYaml: 'xxxx',
+            planName: 'yyyy',
+            schemas: AS.loadCoreSchemas()
+        }, function (C) {
+            assert.equal(undefined, C.error);
             done();
         });
     });

@@ -20,7 +20,22 @@
             "extends": {
                 "$ref": "#definitions/requestConfig"
             },
-            "required": ["yql"]
+            "required": ["yql", "yqlConfig"],
+            "properties": {
+                "yql": {
+                    "type": "string"
+                },
+                "yqlConfig": {
+                    "type": "object",
+                    "required": ["endpoint"],
+                    "properties": {
+                        "endpoint": {
+                            "type": "string",
+                            "default": "https://query.yahooapis.com/v1/public/yql"
+                        }
+                    }
+                }
+            }
         },
         "request": {
             "extends": {
