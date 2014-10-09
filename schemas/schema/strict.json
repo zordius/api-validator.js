@@ -8,17 +8,12 @@
     },
     "required": ["title", "$schema", "type"],
     "properties": {
-        "title": {
-            "type": "string"
-        },
         "$schema": {
-            "type": "string"
+            "type": "string",
+            "default": "core://default.api/strict#"
         },
         "type": {
             "enum": ["array", "object"]
-        },
-        "properties": {
-            "type": "object"
         }
     }
 }
