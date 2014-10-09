@@ -60,7 +60,7 @@ describe('Validator.one', function () {
         done();
     });
 
-    it('should be failed by the scema', function (done) {
+    it('should be failed by the schema', function (done) {
         assert.deepEqual({"error":[{"type":"validation","target":"def","rule":{"required":true}},{"type":"validation","target":"abc","rule":{"type":"string"}}]}, AV.one({
             data: {abc: 1},
             schema: testSchema1
@@ -73,6 +73,15 @@ describe('Validator.one', function () {
             data: {abc: 'dev', def: 1},
             schemas: {abcde123: testSchema1},
             schema: 'abcde123'
+        }));
+        done();
+    });
+
+    it('should validate by schema name with #path', function (done) {
+        assert.deepEqual(null, AV.one({
+            data: 1,
+            schemas: AS.loadCoreSchemas(),
+            schema: 'http://json-schema.org/draft-04/schema#/definitions/positiveInteger'
         }));
         done();
     });
