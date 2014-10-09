@@ -210,9 +210,9 @@ describe('Task.validatePlan', function () {
     });
 });
 
-describe('Task.validateRequests', function () {
+describe('Task.preValidateRequests', function () {
     it('should pass requests schema', function (done) {
-        AT.validateRequests({
+        AT.preValidateRequests({
             requests: [{
                 url: 'http://this.is.ok/'
             }],
@@ -224,7 +224,7 @@ describe('Task.validateRequests', function () {
     });
 
     it('should invalid', function (done) {
-        AT.validateRequests({
+        AT.preValidateRequests({
             requests: [{
                 url: 'badurl'
             }]
