@@ -20,16 +20,11 @@
         },
         "yqlrequest": {
             "required": ["yql"],
-            "properties": {
-                 "yql": {
-                     "$ref": "core://yahoo.com/yql#/definitions/statement"
-                 },
-                 "yqlConfig": {
-                     "$ref": "#/definitions/yqlConfig"
-                 }
-            },
             "dependencies": {
-                "yql": { "$ref": "#/definitions/requestConfig" }
+                "yql": {
+                    "$ref": "#/definitions/requestConfig",
+                    "required": ["yqlConfig"]
+                }
             }
         },
         "request": {
@@ -53,14 +48,20 @@
                 "method": {
                     "$ref": "#/definitions/method"
                 },
+                "yql": {
+                    "$ref": "core://yahoo.com/yql#/definitions/statement"
+                },
                 "yqlConfig": {
                     "$ref": "#/definitions/yqlConfig"
+                },
+                "schema": {
+                    "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "yqlConfig": {
             "type": "object",
-            "required": ["endpoint"],
             "properties": {
                 "endpoint": {
                     "type": "string",

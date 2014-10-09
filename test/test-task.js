@@ -215,11 +215,11 @@ describe('Task.preValidateRequests', function () {
         AT.preValidateRequests({
             requests: [
                 { url: 'http://this.is.ok/' },
-                { yql: 'show tables' }
+                { yql: 'show tables', yqlConfig: {} }
             ],
             schemas: AS.loadCoreSchemas()
         }, function (C) {
-            assert.equal(undefined, C.abort);
+            assert.equal(undefined, C.abort, JSON.stringify(C.error, null, ' '));
             done();
         });
     });
@@ -260,7 +260,7 @@ describe('Task.validateRequests', function () {
             }],
             schemas: AS.loadCoreSchemas()
         }, function (C) {
-            assert.equal(undefined, C.abort);
+            assert.equal(undefined, C.abort, JSON.stringify(C.error, null, ' '));
             done();
         });
     });
@@ -297,11 +297,10 @@ describe('Task.run', function () {
 
     it('should execute a good plan', function (done) {
         AT.run('test/yaml/plan.yaml', function (D) {
-            //console.log(JSON.stringify(D, null, ' '));
             assert.deepEqual([
                'file_0001.json',
                'file_0002.json'
-            ], D.savedFiles);
+            ], D.savedFiles, JSON.stringify(D, null, ' '));
             done();
         });
     });
