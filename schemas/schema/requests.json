@@ -2,44 +2,45 @@
     "$schema": "core://default.api/strict#",
     "title": "JSON Schema to validate an API Validator request list",
     "id": "core://default.api/requests#",
-    "extends": {
-        "$ref": "core://default.api/common#definitions/uniqueArray"
-    },
-    "items": {
-        "oneOf": [
-           { "$ref": "#/definitions/request" },
-           { "$ref": "#/definitions/yqlrequest" }
-        ]
-    },
+    "allOf": [
+        { "$ref": "core://default.api/common#definitions/uniqueArray" },
+        {
+            "items": {
+                "oneOf": [
+                   { "$ref": "#/definitions/request" },
+                   { "$ref": "#/definitions/yqlrequest" }
+                ]
+            }
+        }
+    ],
     "definitions": {
         "method": {
             "type": "string",
             "enum": ["GET", "POST", "PUT", "DELETE"]
         },
         "yqlrequest": {
-            "extends": {
-                "$ref": "#/definitions/requestConfig"
-            },
-            "required": ["yql"],
-            "properties": {
-                "yql": {
-                    "$ref": "core://yahoo.com/yql#/definitions/statement"
-                },
-                "yqlConfig": {
-                    "$ref": "#/definitions/yqlConfig"
+            "allOf": [
+                { "$ref": "#/definitions/requestConfig" },
+                {
+                    "required": ["yql"],
+                    "properties": {
+                        "yql": {
+                            "$ref": "core://yahoo.com/yql#/definitions/statement"
+                        },
+                        "yqlConfig": {
+                            "$ref": "#/definitions/yqlConfig"
+                        }
+                    }
                 }
-            }
+            ]
         },
         "request": {
-            "extends": {
-                "$ref": "#/definitions/requestConfig"
-            },
-            "required": ["url"],
-            "properties": {
-                "url": {
-                    "type": "string"
+            "allOf": [
+                { "$ref": "#/definitions/requestConfig" },
+                {
+                    "required": [ "url" ]
                 }
-            }
+            ]
         },
         "requestConfig": {
             "type": "object",
@@ -73,12 +74,12 @@
             }
         },
         "processed": {
-            "extends": {
-                "$ref": "core://default.api/strict#/definitions/uniqueArray"
-            },
-            "items": {
-                "$ref": "#/definitions/request"
-            }
+            "allOf": [
+                { "$ref": "core://default.api/strict#/definitions/uniqueArray" },
+                {
+                    "items": { "$ref": "#/definitions/request" }
+                }
+            ]
         }
     }
 }

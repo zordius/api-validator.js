@@ -5,61 +5,62 @@
     "type": "object",
     "anyOf": [
         {"$ref": "#/definitions/strictSchema"},
-        {"$ref": "#/definitions/strictExtendedSchema"},
         {"$ref": "#/definitions/strictOneOfSchema"},
         {"$ref": "#/definitions/strictAnyOfSchema"},
         {"$ref": "#/definitions/strictAllOfSchema"}
     ],
     "definitions": {
         "strictPproperties": {
-            "extends": {
-                "$ref": "http://json-schema.org/draft-04/schema#"
-            },
-            "properties": {
-                "$schema": {
-                    "format": "uri",
-                    "default": "core://default.api/strict#"
+            "allOf": [
+                {
+                    "$ref": "http://json-schema.org/draft-04/schema#"
                 },
-                "type": {
-                    "enum": ["array", "object"]
+                {
+                    "properties": {
+                        "$schema": {
+                            "format": "uri",
+                            "default": "core://default.api/strict#"
+                        },
+                        "type": {
+                            "enum": ["array", "object"]
+                        }
+                    }
                 }
-            }
+            ]
         },
         "strictSchema": {
-            "extends": {
-                "$ref": "#/definitions/strictPproperties"
-            },
-            "required": ["title", "$schema", "type"]
-        },
-        "strictExtendedSchema": {
-            "extends": {
-                "$ref": "#/definitions/strictPproperties"
-            },
-            "required": ["title", "$schema", "extends"]
+            "allOf": [
+                {
+                    "$ref": "#/definitions/strictPproperties"
+                },
+                {
+                    "required": ["title", "$schema", "type"]
+                }
+            ]
         },
         "strictOneOfSchema": {
-            "extends": {
-                "$ref": "#/definitions/strictPproperties"
-            },
-            "required": ["title", "$schema", "oneOf"]
+            "allOf": [
+                { "$ref": "#/definitions/strictPproperties" },
+                { "required": ["title", "$schema", "oneOf"] }
+            ]
         },
         "strictAnyOfSchema": {
-            "extends": {
-                "$ref": "#/definitions/strictPproperties"
-            },
-            "required": ["title", "$schema", "anyOf"]
+            "allOf": [
+                { "$ref": "#/definitions/strictPproperties" },
+                { "required": ["title", "$schema", "anyOf"] }
+            ]
         },
         "strictAllOfSchema": {
-            "extends": {
-                "$ref": "#/definitions/strictPproperties"
-            },
-            "required": ["title", "$schema", "allOf"]
+            "allOf": [
+                { "$ref": "#/definitions/strictPproperties" },
+                { "required": ["title", "$schema", "allOf"] }
+            ]
         },
         "definition": {
-            "extends": {
-                "$ref": "#/definitions/strictPproperties"
-            },
-            "required": ["title", "$schema", "definitions"]
+            "allOf": [
+                { "$ref": "#/definitions/strictPproperties" },
+                { "required": ["title", "$schema", "definitions"] }
+            ]
         }
     }
 }
