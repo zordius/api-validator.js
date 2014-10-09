@@ -278,6 +278,20 @@ describe('Task.validateRequests', function () {
             done();
         });
     });
+
+    it('should invalid when url in bad format', function (done) {
+        AT.validateRequests({
+            requests: [
+                {url: '123', abc: 0}
+            ],
+            schemas: AS.loadCoreSchemas()
+        }, function (C) {
+console.log(JSON.stringify(C, undefined, ' '));
+            assert.deepProperty(C, 'error');
+            assert.equal(true, C.abort);
+            done();
+        });
+    });
 });
 
 describe('Task.run', function () {

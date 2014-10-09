@@ -3,17 +3,63 @@
     "title": "Strict JSON Schema to validate other JSON Schema",
     "id": "core://default.api/strict#",
     "type": "object",
-    "extends": {
-        "$ref": "http://json-schema.org/draft-04/schema#"
-    },
-    "required": ["title", "$schema", "type"],
-    "properties": {
-        "$schema": {
-            "type": "string",
-            "default": "core://default.api/strict#"
+    "anyOf": [
+        {"$ref": "#/definitions/strictSchema"},
+        {"$ref": "#/definitions/strictExtendedSchema"},
+        {"$ref": "#/definitions/strictOneOfSchema"},
+        {"$ref": "#/definitions/strictAnyOfSchema"},
+        {"$ref": "#/definitions/strictAllOfSchema"}
+    ],
+    "definitions": {
+        "strictPproperties": {
+            "extends": {
+                "$ref": "http://json-schema.org/draft-04/schema#"
+            },
+            "properties": {
+                "$schema": {
+                    "format": "uri",
+                    "default": "core://default.api/strict#"
+                },
+                "type": {
+                    "enum": ["array", "object"]
+                }
+            }
         },
-        "type": {
-            "enum": ["array", "object"]
+        "strictSchema": {
+            "extends": {
+                "$ref": "#/definitions/strictPproperties"
+            },
+            "required": ["title", "$schema", "type"]
+        },
+        "strictExtendedSchema": {
+            "extends": {
+                "$ref": "#/definitions/strictPproperties"
+            },
+            "required": ["title", "$schema", "extended"]
+        },
+        "strictOneOfSchema": {
+            "extends": {
+                "$ref": "#/definitions/strictPproperties"
+            },
+            "required": ["title", "$schema", "oneOf"]
+        },
+        "strictAnyOfSchema": {
+            "extends": {
+                "$ref": "#/definitions/strictPproperties"
+            },
+            "required": ["title", "$schema", "anyOf"]
+        },
+        "strictAllOfSchema": {
+            "extends": {
+                "$ref": "#/definitions/strictPproperties"
+            },
+            "required": ["title", "$schema", "allOf"]
+        },
+        "definition": {
+            "extends": {
+                "$ref": "#/definitions/strictPproperties"
+            },
+            "required": ["title", "$schema", "definitions"]
         }
     }
 }
