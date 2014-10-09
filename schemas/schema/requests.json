@@ -18,7 +18,7 @@
         },
         "yqlrequest": {
             "extends": {
-                "$ref": "#definitions/requestConfig"
+                "$ref": "#/definitions/requestConfig"
             },
             "required": ["yql"],
             "properties": {
@@ -26,13 +26,13 @@
                     "$ref": "core://yahoo.com/yql#/definitions/statement"
                 },
                 "yqlConfig": {
-                    "$ref": "#definitions/yqlConfig"
+                    "$ref": "#/definitions/yqlConfig"
                 }
             }
         },
         "request": {
             "extends": {
-                "$ref": "#definitions/requestConfig"
+                "$ref": "#/definitions/requestConfig"
             },
             "required": ["url"]
         },

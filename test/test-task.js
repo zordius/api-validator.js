@@ -237,6 +237,20 @@ describe('Task.preValidateRequests', function () {
             done();
         });
     });
+
+    it('should invalid when url provided and bad pattern', function (done) {
+        AT.preValidateRequests({
+            requests: [{
+                url: 'badurl'
+            }],
+            schemas: AS.loadCoreSchemas()
+        }, function (C) {
+console.log(JSON.stringify(C.error, undefined, ' '));
+            assert.deepProperty(C, 'error');
+            assert.equal(true, C.abort);
+            done();
+        });
+    });
 });
 
 describe('Task.validateRequests', function () {
@@ -252,7 +266,7 @@ describe('Task.validateRequests', function () {
         });
     });
 
-    it('should invalid', function (done) {
+    it('should invalid when no url', function (done) {
         AT.validateRequests({
             requests: [{
                 yql: 'show table'
