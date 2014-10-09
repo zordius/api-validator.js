@@ -35,7 +35,7 @@
             "extends": {
                 "$ref": "#/definitions/strictPproperties"
             },
-            "required": ["title", "$schema", "extended"]
+            "required": ["title", "$schema", "extends"]
         },
         "strictOneOfSchema": {
             "extends": {
