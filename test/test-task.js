@@ -176,6 +176,7 @@ describe('Task.loadPlan', function () {
              delete C.schemas;
              delete C.planName;
              delete C.tasks;
+             delete C.requestConfig;
              assert.deepEqual(['abc', 'def'], C);
              done();
          });
