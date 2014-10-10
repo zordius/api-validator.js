@@ -1,7 +1,7 @@
 #!/bin/sh
 
 node --max-old-space-size=8192 ./cmd.js test/yaml/example_yql_plan.yaml > results.json
-if [ "{$?}" == "134" ]; then
+if [ "{$?}" = "134" ]; then
   echo run into nodejs memory limit....
 else
   node_modules/.bin/mocha example_output_mocha.js
