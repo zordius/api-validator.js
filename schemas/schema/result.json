@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "JSON Schema to validate request result",
+    "id": "core://default.api/result",
+    "required": ["body"],
+    "type": "object",
+    "properties": {
+        "input": {
+            "$ref": "core://default.api/requests#/definitions/requestConfig"
+        },
+        "response": {
+            "$ref": "#/definitions/responseObject"
+        }
+    },
+    "definitions": {
+        "responseObject": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "number"
+                },
+                "statusMessage": {
+                    "type": "string"
+                },
+                "httpVersion": {
+                    "type": "string"
+                },
+                "complete": {
+                    "type": "boolean"
+                },
+                "connection": {
+                    "type": "object"
+                },
+                "headers": {
+                    "type": "object"
+                },
+                "rawHeaders": {
+                    "type": "array"
+                },
+                "body": {
+                    "type": ["array", "boolean", "integer", "null", "number", "object", "string"]
+                }
+            }
+        }
+    }
+}
