@@ -1,0 +1,12 @@
+{
+    "$schema": "core://default.api/strict#/definitions/definition",
+    "title": "Common JSON Schema Definitions",
+    "id": "core://default.api/common#",
+    "definitions": {
+        "uniqueArray": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true
+        }
+    }
+}
