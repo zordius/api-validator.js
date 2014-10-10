@@ -89,3 +89,22 @@ Then run mocha:
 ```shell
 mocha test.js
 ```
+
+The output will be:
+
+```
+  API Validator tests reports by test/yaml/example_yql_plan.yaml
+    ✓ Task "validatePlan" should be executed
+    ✓ Task "loadSchemas" should be executed
+    ✓ Task "loadRequestList" should be executed
+    ✓ Task "preValidateRequests" should be executed
+    ✓ Task "prepareRequest" should be executed
+    ✓ Task "validateRequests" should be executed
+    ✓ Task "request" should be executed
+    ✓ Task "save" should be executed
+    ✓ Task "validate" should be executed
+    ✓ [Saved in file_0001.json] https://query.yahooapis.com/v1/public/yql should pass schema "core://default.api/result#"
+
+
+  10 passing (7ms)
+```
