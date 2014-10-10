@@ -82,6 +82,9 @@
                 { "$ref": "core://default.api/common#/definitions/uniqueArray" },
                 {
                     "items": { "$ref": "#/definitions/request" }
+                },
+                {
+                    "items": { "required": ["schema"]}
                 }
             ]
         }

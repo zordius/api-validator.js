@@ -258,7 +258,8 @@ describe('Task.validateRequests', function () {
     it('should pass requests schema', function (done) {
         AT.validateRequests({
             requests: [{
-                url: 'http://this.is.ok/'
+                url: 'http://this.is.ok/',
+                schema: 'test'
             }],
             schemas: AS.loadCoreSchemas()
         }, function (C) {
@@ -271,6 +272,19 @@ describe('Task.validateRequests', function () {
         AT.validateRequests({
             requests: [{
                 yql: 'show table'
+            }],
+            schemas: AS.loadCoreSchemas()
+        }, function (C) {
+            assert.deepProperty(C, 'error');
+            assert.equal(true, C.abort);
+            done();
+        });
+    });
+
+    it('should invalid when no schema', function (done) {
+        AT.validateRequests({
+            requests: [{
+                url: 'http://test.is.ok'
             }],
             schemas: AS.loadCoreSchemas()
         }, function (C) {
