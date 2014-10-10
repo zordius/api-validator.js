@@ -23,6 +23,7 @@
     "jjv": "1.0.2",
     "lodash": "2.4.1",
     "request": "2.31.0",
+    "jsonlint": "1.6.2",
     "traverse": "0.6.6",
     "when": "3.2.2",
     "yamljs": "0.2.0"
@@ -44,7 +45,6 @@
   "devDependencies": {
     "chai": "*",
     "istanbul": "*",
-    "jsonlint": "*",
     "mocha": "*",
     "mock-fs": "2.3.1",
     "nock": "0.28.3"
