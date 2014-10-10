@@ -220,7 +220,7 @@ describe('Task.preValidateRequests', function () {
             ],
             schemas: AS.loadCoreSchemas()
         }, function (C) {
-            assert.equal(undefined, C.abort, JSON.stringify(C.error, null, ' '));
+            assert.equal(undefined, C.abort, JSON.stringify([C.requests, C.errori], null, ' '));
             done();
         });
     });
