@@ -85,42 +85,6 @@ describe('Request.one', function () {
     });
 });
 
-describe('Request.promise', function () {
-    before(setupFakeHTTP);
-    after(cleanFakeHTTP);
-
-    it('should be failed as input error', function (done) {
-        AR.promise().then(function (E) {
-            assert.deepEqual([{"type":"input","message":"No input for ARequest.one"}], E.error);
-            done();
-        });
-    });
-});
-
-describe('Request.promiseAll', function () {
-    before(setupFakeHTTP);
-    after(cleanFakeHTTP);
-
-    it('should handle all request', function (done) {
-        var R1 = {url: baseurl + PATHS.ABCDEF, json: true},
-            R2 = {url: NoConnectURL};
-
-        AR.promiseAll([R1, R2]).then(function (E) {
-            assert.property(E[0], 'request');
-            assert.property(E[0], 'response');
-            delete E[0].request;
-            delete E[0].response;
-            assert.property(E[1], 'request');
-            delete E[1].request;
-            assert.deepEqual([
-                {input: R1, error: [], body: {abc: '123', def: 0}},
-                {input: R2, error: [ { type: 'request', message: 'connect ECONNREFUSED' } ], response: undefined, body: undefined}
-            ], E);
-            done();
-        });
-    });
-});
-
 describe('Request.all', function () {
     before(setupFakeHTTP);
     after(cleanFakeHTTP);

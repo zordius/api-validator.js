@@ -38,7 +38,7 @@
             "type": "string"
         },
         "verbose": {
-            "enum": [true]
+            "enum": [true, 1, 2]
         }
     },
     "definitions": {
