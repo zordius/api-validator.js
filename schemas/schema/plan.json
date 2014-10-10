@@ -37,6 +37,9 @@
         "schemas": {
             "type": "object"
         },
+        "tasks": {
+            "type": "object"
+        },
         "pass": {
             "enum": [false]
         },
