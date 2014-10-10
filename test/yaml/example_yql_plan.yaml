@@ -1,1 +1,2 @@
 requestYaml: test/yaml/yql_requests.yaml
+verbose: true
