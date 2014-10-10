@@ -2,7 +2,7 @@
 
 node --max-old-space-size=8192 ./cmd.js test/yaml/example_yql_plan.yaml > results.json
 CODE=$?
-if [ $CODE -lt 130 ]; then
+if [ $CODE -gt 130 ]; then
   echo run into nodejs memory limit issue... CODE: $CODE
 else
   node_modules/.bin/mocha example_output_mocha.js
