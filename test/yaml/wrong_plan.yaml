@@ -1,0 +1,4 @@
+requestYaml: test/yaml/wrong_requests.yaml
+verbose: true
+requestConfig:
+  timeout: 10

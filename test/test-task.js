@@ -320,4 +320,11 @@ describe('Task.run', function () {
             done();
         });
     });
+    it('should report bad tasks', function (done) {
+        AT.run('test/yaml/wrong_plan.yaml', function (D) {
+            assert.equal(false, D.tasks.validate);
+            assert.equal(false, D.tasks.save);
+            done();
+        });
+    });
 });
