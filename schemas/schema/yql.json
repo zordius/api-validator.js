@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "JSON Schema to validate all YQL related thing",
+    "id": "core://yahoo.com/yql#",
+    "required": ["title", "$schema", "type"],
+    "definitions": {
+        "statement": {
+            "type": "string",
+            "pattern": "((show tables)|((select|delete|insert|update) .+ from .+( where .+)))"
+        }
+    }
+}
