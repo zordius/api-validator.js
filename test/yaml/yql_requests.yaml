@@ -1,1 +1,2 @@
 - yql: show tables
+  schema: "core://default.api/result#"

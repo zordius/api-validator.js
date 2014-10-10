@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "JSON Schema to validate request result",
-    "id": "core://default.api/result",
+    "id": "core://default.api/result#",
     "required": ["body"],
     "type": "object",
     "properties": {
