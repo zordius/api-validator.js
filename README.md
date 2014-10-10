@@ -38,7 +38,7 @@ Features
  * API Validation
 * Customize
  * Authorize requests **TODO**
- * test on <a href="https://developer.yahoo.com/yql/">YQL tables</a> **TODO**
+ * test on <a href="https://developer.yahoo.com/yql/">YQL tables</a>
  * test by API blueprint **TODO**
 
 Command Line Usage
@@ -64,6 +64,8 @@ requestConfig:
   schema: schema_name1
 - url: http://apihost/endpoint2
   schema: schema_name2
+- yql: select * from sometable
+  schema: schema_name3
 ```
 
 **Step 3. Validate!**
