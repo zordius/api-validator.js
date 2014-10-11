@@ -93,7 +93,7 @@ describe('Request.all', function () {
         var R1 = {url: baseurl + PATHS.ABCDEF, json: true},
             R2 = {url: NoConnectURL};
 
-        AR.all([R1, R2], function (E) {
+        AR.all([R1, R2], 2, function (E) {
             assert.property(E[0], 'request');
             assert.property(E[0], 'response');
             delete E[0].request;

@@ -25,6 +25,12 @@
             "type": "string",
             "default": "./requestHelper"
         },
+        "concurrency": {
+            "allOf": [
+                {"$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger"},
+                {"default": 2}
+            ]
+        },
         "schemas": {
             "type": "object"
         },
