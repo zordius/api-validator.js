@@ -9,6 +9,7 @@
             "uniqueItems": true
         },
         "utctime": {
+            "description": "http://en.wikipedia.org/wiki/ISO_8601",
             "type": "string",
             "pattern": "^\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$"
         }
