@@ -12,6 +12,11 @@
             "description": "http://en.wikipedia.org/wiki/ISO_8601",
             "type": "string",
             "pattern": "^\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$"
+        },
+        "languageTag": {
+            "description": "http://tools.ietf.org/html/rfc4647",
+            "type": "string",
+            "pattern": "^.+-.+$"
         }
     }
 }

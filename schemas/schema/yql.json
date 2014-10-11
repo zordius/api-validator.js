@@ -40,6 +40,9 @@
                 },
                 "created": {
                     "$ref": "core://default.api/common#/definitions/utctime"
+                },
+                "lang": {
+                    "$ref": "core://default.api/common#/definitions/languageTag"
                 }
             }
         }
