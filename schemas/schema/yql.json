@@ -43,6 +43,23 @@
                 },
                 "lang": {
                     "$ref": "core://default.api/common#/definitions/languageTag"
+                },
+                "diagnostics": {
+                    "publiclyCallable": {
+                        "enum": ["true", "false"]
+                    },
+                    "user-time": {
+                        "$ref": "core://default.api/common#/definitions/integerString"
+                    },
+                    "service-time": {
+                        "$ref": "core://default.api/common#/definitions/integerString"
+                    },
+                    "build-version": {
+                        "$ref": "core://default.api/common#/definitions/version"
+                    }
+                },
+                "results": {
+                    "type": ["object", "array", "null"]
                 }
             }
         }

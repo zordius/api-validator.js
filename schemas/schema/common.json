@@ -17,6 +17,14 @@
             "description": "http://tools.ietf.org/html/rfc4647",
             "type": "string",
             "pattern": "^.+-.+$"
+        },
+        "integerString": {
+            "type": "string",
+            "pattern": "^\\d+$"
+        },
+        "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+([-\\da-zA-Z]+)?$"
         }
     }
 }
