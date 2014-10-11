@@ -23,6 +23,7 @@
             "pattern": "^\\d+$"
         },
         "version": {
+            "description": "http://semver.org/",
             "type": "string",
             "pattern": "^\\d+\\.\\d+\\.\\d+([-\\da-zA-Z]+)?$"
         }
