@@ -1,0 +1,47 @@
+{
+    "$schema": "core://default.api/strict#",
+    "title": "JSON Schema to validate 'show tables' result",
+    "id": "show_tables",
+    "allOf": [
+        {"$ref": "core://default.api/yql#/definitions/result"},
+        {"$ref": "#/definitions/result"}
+    ]
+    "definitions": {
+        "result": {
+            "properties": {
+                "response": {
+                    "properties": {
+                        "body": {
+                            "query": {
+                                "results": {
+                                    "$ref": "#/definitions/results"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "results": {
+            "properties": {
+                "table": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/table"
+                    }
+                }
+            }
+        },
+        "table": {
+            "type": "object",
+            "properties": {
+                "security": {
+                    "$ref": "core://default.api/yql#/definitions/security"
+                },
+                "content": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

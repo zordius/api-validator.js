@@ -6,11 +6,13 @@ var assert = require('chai').assert,
 
 describe('Schema.find', function () {
     it('should search by default match', function (done) {
+        var D = AS.find('test/schemas');
         assert.sameMembers([
             'test/schemas/test.json',
             'test/schemas/test2.json',
-            'test/schemas/subdir/test3.json'
-        ], AS.find('test/schemas'));
+            'test/schemas/subdir/test3.json',
+            'test/schemas/example/show_tables.json'
+        ], D, JSON.stringify(D, null, ' '));
         done();
     });
 

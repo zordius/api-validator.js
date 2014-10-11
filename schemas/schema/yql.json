@@ -62,6 +62,9 @@
                     "type": ["object", "array", "null"]
                 }
             }
+        },
+        "security": {
+            "enum": ["ANY", "USER", "APP"]
         }
     }
 }
