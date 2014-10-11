@@ -39,6 +39,7 @@
                     "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger"
                 },
                 "created": {
+                    "$ref": "core://default.api/common#/definitions/utctime"
                 }
             }
         }

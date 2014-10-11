@@ -7,6 +7,10 @@
             "type": "array",
             "minItems": 1,
             "uniqueItems": true
+        },
+        "utctime": {
+            "type": "string",
+            "pattern": "^\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$"
         }
     }
 }
