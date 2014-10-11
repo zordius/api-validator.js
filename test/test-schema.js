@@ -145,7 +145,7 @@ describe('Schema.loadRelativeFile', function () {
 
     it('should load schemas and do not none file:// $ref', function (done) {
         var D = AS.loadRelativeFile('test/schemas/example'),
-            K = 'example://show_tables#';
+            K = 'example://yql.yahoo.com/show_tables#';
 
         assert.equal(K, D[K].id, JSON.stringify(D, null, ' '));
         done();
