@@ -16,6 +16,13 @@ describe('Schema.find', function () {
         done();
     });
 
+    it('should match single file', function (done) {
+        assert.sameMembers([
+            'test/schemas/example/show_tables.json'
+        ], AS.find('test/schemas/example'));
+        done();
+    });
+
     it('should search for only matched pattern under the base directory', function (done) {
         assert.deepEqual([
             'test/schemas/test.json'
@@ -133,6 +140,11 @@ describe('Schema.loadRelativeFile', function () {
         };
 
         assert.deepEqual(R, AS.loadRelativeFile('test/schemas', /test2\.json$/));
+        done();
+    });
+
+    it('should load schemas and do not none file:// $ref', function (done) {
+        console.log(AS.loadRelativeFile('test/schemas/example'));
         done();
     });
 });

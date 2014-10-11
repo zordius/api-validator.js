@@ -5,7 +5,7 @@
     "allOf": [
         {"$ref": "core://default.api/yql#/definitions/result"},
         {"$ref": "#/definitions/result"}
-    ]
+    ],
     "definitions": {
         "result": {
             "properties": {
