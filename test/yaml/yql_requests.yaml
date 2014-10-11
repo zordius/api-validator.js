@@ -1,4 +1,4 @@
 - yql: show tables
   schema: "core://yahoo.com/yql#/definitions/result"
 - yql: show tables
-  schema: show_tables
+  schema: "example://show_tables"

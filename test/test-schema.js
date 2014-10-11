@@ -144,7 +144,10 @@ describe('Schema.loadRelativeFile', function () {
     });
 
     it('should load schemas and do not none file:// $ref', function (done) {
-        console.log(AS.loadRelativeFile('test/schemas/example'));
+        var D = AS.loadRelativeFile('test/schemas/example'),
+            K = 'example://show_tables#';
+
+        assert.equal(K, D[K].id, JSON.stringify(D, null, ' '));
         done();
     });
 });
