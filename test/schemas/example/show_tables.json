@@ -23,6 +23,7 @@
             }
         },
         "results": {
+            "type": "object",
             "properties": {
                 "table": {
                     "type": "array",
