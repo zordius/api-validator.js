@@ -74,7 +74,6 @@
         },
         "allOfSchemas": {
             "type": "object",
-            "additionalProperties": false,
             "required": ["allOf"],
             "properties": {
                 "allOf": {
