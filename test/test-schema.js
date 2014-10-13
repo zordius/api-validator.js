@@ -154,11 +154,11 @@ describe('Schema.loadRelativeFile', function () {
 
 describe('Schema.loadRemoteCached', function () {
     it('should load with correct URI', function (done) {
-        var S = require('../schemas/remote/draft4.json'),
+        var S = require('../schemas/draft4.json'),
             R = {};
 
         R[S.id] = S;
-        assert.deepEqual(R, AS.loadRemoteCached('schemas/remote', /draft4.json/));
+        assert.deepEqual(R, AS.loadRemoteCached('schemas', /draft4.json/));
         done();
     });
 });
@@ -167,7 +167,7 @@ describe('Schema.loadCoreSchemas', function () {
     it('should load core schemas', function (done) {
         var C = AS.loadCoreSchemas();
 
-        assert.deepEqual(require('../schemas/remote/draft4.json'), C['http://json-schema.org/draft-04/schema#']);
+        assert.deepEqual(require('../schemas/draft4.json'), C['http://json-schema.org/draft-04/schema#']);
         done();
     });
 });
