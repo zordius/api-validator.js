@@ -1,7 +1,7 @@
 {
     "$schema": "core://default.api/strict#/definitions/definition",
     "title": "Common JSON Schema Definitions",
-    "id": "core://default.api/common#",
+    "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#",
     "definitions": {
         "uniqueArray": {
             "type": "array",

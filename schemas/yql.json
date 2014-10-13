@@ -38,23 +38,23 @@
                     "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger"
                 },
                 "created": {
-                    "$ref": "core://default.api/common#/definitions/utctime"
+                    "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/utctime"
                 },
                 "lang": {
-                    "$ref": "core://default.api/common#/definitions/languageTag"
+                    "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/languageTag"
                 },
                 "diagnostics": {
                     "publiclyCallable": {
                         "enum": ["true", "false"]
                     },
                     "user-time": {
-                        "$ref": "core://default.api/common#/definitions/integerString"
+                        "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/integerString"
                     },
                     "service-time": {
-                        "$ref": "core://default.api/common#/definitions/integerString"
+                        "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/integerString"
                     },
                     "build-version": {
-                        "$ref": "core://default.api/common#/definitions/version"
+                        "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/version"
                     }
                 },
                 "results": {
