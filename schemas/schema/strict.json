@@ -61,6 +61,30 @@
                 { "$ref": "#/definitions/strictPproperties" },
                 { "required": ["title", "$schema", "definitions"] }
             ]
+        },
+        "refSchema": {
+            "required": ["$ref"],
+            "additionalProperties": false,
+            "properties": {
+                "$ref": {
+                    "type": "string",
+                    "pattern": "^(.+)?#/.+$"
+                }
+            }
+        },
+        "allOfSchemas": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["allOf"],
+            "properties": {
+                "allOf": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                        "$ref": "#/definitions/refSchema"
+                    }
+                }
+            }
         }
     }
 }

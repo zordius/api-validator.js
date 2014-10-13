@@ -1,5 +1,5 @@
 {
-    "$schema": "core://default.api/strict#",
+    "$schema": "core://yahoo.com/yql#/definitions/schema",
     "title": "JSON Schema to validate 'show tables' result",
     "id": "example://yql.yahoo.com/show_tables#",
     "allOf": [

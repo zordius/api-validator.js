@@ -2,7 +2,6 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "JSON Schema to validate all YQL related thing",
     "id": "core://yahoo.com/yql#",
-    "required": ["title", "$schema", "type"],
     "definitions": {
         "statement": {
             "type": "string",
@@ -65,6 +64,18 @@
         },
         "security": {
             "enum": ["ANY", "USER", "APP"]
+        },
+        "schema": {
+            "allOf": [
+                {"$ref": "http://json-schema.org/draft-04/schema#"},
+                {"$ref": "#/definitions/strictYQLResultSchema"}
+            ]
+        },
+        "strictYQLResultSchema": {
+            "allOf": [
+                {"$ref": "core://default.api/strict#/definitions/allOfSchemas"},
+                {"required": ["definitions"]}
+            ]
         }
     }
 }
