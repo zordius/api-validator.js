@@ -1,5 +1,5 @@
 {
-    "$schema": "core://default.api/strict#",
+    "$schema": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#",
     "title": "JSON Schema to validate an API Validator plan",
     "id": "core://default.api/plan#",
     "type": "object",

@@ -73,7 +73,7 @@
         },
         "strictYQLResultSchema": {
             "allOf": [
-                {"$ref": "core://default.api/strict#/definitions/allOfSchemas"},
+                {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/allOfSchemas"},
                 {"required": ["definitions"]}
             ]
         }
