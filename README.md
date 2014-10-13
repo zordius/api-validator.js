@@ -103,8 +103,9 @@ The output will be:
     ✓ Task "request" should be executed
     ✓ Task "save" should be executed
     ✓ Task "validate" should be executed
-    ✓ [Saved in file_0001.json] https://query.yahooapis.com/v1/public/yql should pass schema "core://default.api/result#"
+    ✓ [Saved in file_0001.json] https://query.yahooapis.com/v1/public/yql should pass schema "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#/definitions/result"
+    ✓ [Saved in file_0002.json] https://query.yahooapis.com/v1/public/yql should pass schema "example://yql.yahoo.com/show_tables"
 
 
-  10 passing (7ms)
+  11 passing (7ms)
 ```
