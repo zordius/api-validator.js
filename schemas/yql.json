@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "JSON Schema to validate all YQL related thing",
-    "id": "core://yahoo.com/yql#",
+    "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#",
     "definitions": {
         "statement": {
             "type": "string",

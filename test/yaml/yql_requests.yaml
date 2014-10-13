@@ -1,4 +1,4 @@
 - yql: show tables
-  schema: "core://yahoo.com/yql#/definitions/result"
+  schema: "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#/definitions/result"
 - yql: show tables
   schema: "example://yql.yahoo.com/show_tables"

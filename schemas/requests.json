@@ -54,7 +54,7 @@
                     "$ref": "#/definitions/method"
                 },
                 "yql": {
-                    "$ref": "core://yahoo.com/yql#/definitions/statement"
+                    "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#/definitions/statement"
                 },
                 "yqlConfig": {
                     "$ref": "#/definitions/yqlConfig"

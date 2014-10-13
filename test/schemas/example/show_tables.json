@@ -1,9 +1,9 @@
 {
-    "$schema": "core://yahoo.com/yql#/definitions/schema",
+    "$schema": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#/definitions/schema",
     "title": "JSON Schema to validate 'show tables' result",
     "id": "example://yql.yahoo.com/show_tables#",
     "allOf": [
-        {"$ref": "core://yahoo.com/yql#/definitions/result"},
+        {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#/definitions/result"},
         {"$ref": "#/definitions/result"}
     ],
     "definitions": {
@@ -37,7 +37,7 @@
             "type": "object",
             "properties": {
                 "security": {
-                    "$ref": "core://yahoo.com/yql#/definitions/security"
+                    "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#/definitions/security"
                 },
                 "content": {
                     "type": "string"
