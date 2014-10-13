@@ -1,7 +1,7 @@
 {
     "$schema": "core://default.api/strict#",
     "title": "JSON Schema to validate an API Validator request list",
-    "id": "core://default.api/requests#",
+    "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/requests.json#",
     "allOf": [
         { "$ref": "core://default.api/common#/definitions/uniqueArray" },
         {

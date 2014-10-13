@@ -1,12 +1,12 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "JSON Schema to validate request result",
-    "id": "core://default.api/result#",
+    "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/result.json#",
     "required": ["body"],
     "type": "object",
     "properties": {
         "input": {
-            "$ref": "core://default.api/requests#/definitions/requestConfig"
+            "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/requests.json#/definitions/requestConfig"
         },
         "response": {
             "$ref": "#/definitions/responseObject"

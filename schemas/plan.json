@@ -13,7 +13,7 @@
             "type": "string"
         },
         "requestConfig": {
-            "$ref": "core://default.api/requests#/definitions/requestConfig"
+            "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/requests.json#/definitions/requestConfig"
         },
         "schemaDir": {
             "type": "string"

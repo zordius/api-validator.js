@@ -9,7 +9,7 @@
         },
         "result": {
             "allOf": [
-                {"$ref": "core://default.api/result#"},
+                {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/result.json#"},
                 {"properties": {
                     "response": {
                         "properties": {
