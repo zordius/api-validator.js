@@ -90,6 +90,31 @@
                                     "required": ["body"],
                                     "properties": {
                                         "body": {
+                                            "type": "object",
+                                            "required": ["properties"],
+                                            "properties": {
+                                                "properties": {
+                                                    "type": "object",
+                                                    "required": ["query"],
+                                                    "properties": {
+                                                        "query": {
+                                                            "type": "object",
+                                                            "required": ["properties"],
+                                                            "properties": {
+                                                                "properties": {
+                                                                    "type": "object",
+                                                                    "required": ["results"],
+                                                                    "properties": {
+                                                                        "results": {
+                                                                            "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/localRef"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }

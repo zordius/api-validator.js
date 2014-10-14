@@ -72,6 +72,16 @@
                 }
             }
         },
+        "localRef": {
+            "required": ["$ref"],
+            "additionalProperties": false,
+            "properties": {
+                "$ref": {
+                    "type": "string",
+                    "pattern": "^#/.+$"
+                }
+            }
+        },
         "allOfSchemas": {
             "type": "object",
             "required": ["allOf"],
