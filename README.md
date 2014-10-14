@@ -109,3 +109,14 @@ The output will be:
 
   11 passing (7ms)
 ```
+
+Good JSON Schema practices
+--------------------------
+
+* file name: `*.json` or `*.schema.json`
+* `title` , `id` and `$schema` are required
+* Refer to any resources by correct URI. (GOOD: `"$ref": "http://real.host/real.json#"` , bad: `"$ref": "any_name"` )
+* Use `definitions` and `$ref` to decouple schema into many sub schemas
+* Reuse sub schemas
+
+Check <a href="schemas">boundled schemas</a> to see examples.
