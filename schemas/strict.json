@@ -96,6 +96,32 @@
                     }
                 }
             }
+        },
+        "arraySchema": {
+            "type": "object",
+            "required": ["type", "items"],
+            "properties": {
+                "type": {
+                    "enum": ["array"]
+                },
+                "items": {
+                    "type": "object",
+                    "minProperties": 1
+                }
+            }
+        },
+        "objectSchema": {
+            "type": "object",
+            "required": ["type", "properties"],
+            "properties": {
+                "type": {
+                    "enum": ["object"]
+                },
+                "properties": {
+                    "type": "object",
+                    "minProperties": 1
+                }
+            }
         }
     }
 }

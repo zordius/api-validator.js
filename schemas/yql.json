@@ -81,6 +81,12 @@
                     "type": "object",
                     "required": ["result", "results"],
                     "properties": {
+                        "results": {
+                            "oneOf": [
+                                {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/arraySchema" },
+                                {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/objectSchema" }
+                            ]
+                        },
                         "result": {
                             "type": "object",
                             "required": ["properties"],
