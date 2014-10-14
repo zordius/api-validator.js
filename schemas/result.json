@@ -18,7 +18,7 @@
     "definitions": {
         "responseObject": {
             "type": "object",
-            "required": ["statusCode", "statusMessage", "httpVersion", "complete", "headers", "rawHeaders"],
+            "required": ["statusCode", "httpVersion", "complete", "headers"],
             "properties": {
                 "statusCode": {
                     "type": "number"
