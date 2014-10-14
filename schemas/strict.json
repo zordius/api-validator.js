@@ -63,13 +63,19 @@
             ]
         },
         "refSchema": {
+            "oneOf": [
+                {"$ref": "#/definitions/externalRef"},
+                {"$ref": "#/definitions/localRef"}
+            ]
+        },
+        "externalRef": {
             "type": "object",
             "required": ["$ref"],
             "additionalProperties": false,
             "properties": {
                 "$ref": {
                     "type": "string",
-                    "pattern": "^(.+)?#/.+$"
+                    "pattern": "^.+#(/.+)?$"
                 }
             }
         },
