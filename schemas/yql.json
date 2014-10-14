@@ -79,7 +79,7 @@
             "properties": {
                 "definitions": {
                     "type": "object",
-                    "required": ["result"],
+                    "required": ["result", "results"],
                     "properties": {
                         "result": {
                             "type": "object",

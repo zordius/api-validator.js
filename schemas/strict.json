@@ -63,6 +63,7 @@
             ]
         },
         "refSchema": {
+            "type": "object",
             "required": ["$ref"],
             "additionalProperties": false,
             "properties": {
@@ -73,6 +74,7 @@
             }
         },
         "localRef": {
+            "type": "object",
             "required": ["$ref"],
             "additionalProperties": false,
             "properties": {
