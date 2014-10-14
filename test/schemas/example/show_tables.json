@@ -12,9 +12,13 @@
                 "response": {
                     "properties": {
                         "body": {
-                            "query": {
-                                "results": {
-                                    "$ref": "#/definitions/results"
+                            "properties": {
+                                "query": {
+                                    "properties": {
+                                        "results": {
+                                            "$ref": "#/definitions/results"
+                                        }
+                                    }
                                 }
                             }
                         }

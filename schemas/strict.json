@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#",
     "title": "Strict JSON Schema to validate other JSON Schema",
-    "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json",
+    "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#",
     "type": "object",
     "anyOf": [
         {"$ref": "#/definitions/strictSchema"},

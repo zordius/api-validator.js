@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "JSON Schema to validate request result",
     "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/result.json#",
-    "required": ["body"],
+    "required": ["input", "response", "body"],
     "type": "object",
     "properties": {
         "input": {
@@ -10,11 +10,15 @@
         },
         "response": {
             "$ref": "#/definitions/responseObject"
+        },
+        "body": {
+            "type": ["array", "boolean", "integer", "null", "number", "object", "string"]
         }
     },
     "definitions": {
         "responseObject": {
             "type": "object",
+            "required": ["statusCode", "statusMessage", "httpVersion", "complete", "headers", "rawHeaders"],
             "properties": {
                 "statusCode": {
                     "type": "number"
@@ -28,17 +32,11 @@
                 "complete": {
                     "type": "boolean"
                 },
-                "connection": {
-                    "type": "object"
-                },
                 "headers": {
                     "type": "object"
                 },
                 "rawHeaders": {
                     "type": "array"
-                },
-                "body": {
-                    "type": ["array", "boolean", "integer", "null", "number", "object", "string"]
                 }
             }
         }

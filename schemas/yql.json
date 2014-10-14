@@ -1,6 +1,6 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "JSON Schema to validate all YQL related thing",
+    "$schema": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/definition",
+    "title": "JSON Schema definitions to validate all YQL related thing",
     "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#",
     "definitions": {
         "statement": {
@@ -10,15 +10,11 @@
         "result": {
             "allOf": [
                 {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/result.json#"},
-                {"properties": {
-                    "response": {
-                        "properties": {
-                            "body": {
-                                "$ref": "#/definitions/body"
-                            }
-                        }
+                {
+                    "properties": {
+                        "body": { "$ref": "#/definitions/body" }
                     }
-                }}
+                }
             ]
         },
         "body": {
@@ -74,8 +70,34 @@
         "strictYQLResultSchema": {
             "allOf": [
                 {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/allOfSchemas"},
-                {"required": ["definitions"]}
+                {"$ref": "#/definitions/refResults"}
             ]
+        },
+        "refResults": {
+            "type": "object",
+            "required": ["definitions"],
+            "properties": {
+                "definitions": {
+                    "type": "object",
+                    "required": ["result"],
+                    "properties": {
+                        "result": {
+                            "type": "object",
+                            "required": ["properties"],
+                            "properties": {
+                                "properties": {
+                                    "type": "object",
+                                    "required": ["response"],
+                                    "properties": {
+                                        "response": {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
