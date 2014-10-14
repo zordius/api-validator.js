@@ -9,16 +9,12 @@
     "definitions": {
         "result": {
             "properties": {
-                "response": {
+                "body": {
                     "properties": {
-                        "body": {
+                        "query": {
                             "properties": {
-                                "query": {
-                                    "properties": {
-                                        "results": {
-                                            "$ref": "#/definitions/results"
-                                        }
-                                    }
+                                "results": {
+                                    "$ref": "#/definitions/results"
                                 }
                             }
                         }

@@ -87,9 +87,9 @@
                             "properties": {
                                 "properties": {
                                     "type": "object",
-                                    "required": ["response"],
+                                    "required": ["body"],
                                     "properties": {
-                                        "response": {
+                                        "body": {
                                         }
                                     }
                                 }
