@@ -81,7 +81,7 @@ Will output full context into results.json and exit with 0 when pass.
 Run with mocha then you can using any mocha reporter to see test results. You need to prepare a test.js like this:
 
 ```javascript
-require('api-reporter').mocha('results.json');
+require('api-validator').mocha('results.json');
 ```
 
 Then run mocha:
