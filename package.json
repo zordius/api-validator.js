@@ -1,6 +1,6 @@
 {
   "name": "api-validator",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A nodejs lib and command line tool powered by JSON Schema to validate web API output",
   "author": "Zordius <zordius@yahoo-inc.com>",
   "contributors": [
