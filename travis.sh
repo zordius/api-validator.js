@@ -1,13 +1,4 @@
 #!/bin/sh
-
-node --max-old-space-size=8192 ./cmd.js test/yaml/example_yql_plan.yaml > results.json
-CODE=$?
-if [ $CODE -gt 130 ]; then
-  echo run into nodejs memory limit issue... CODE: $CODE
-else
-  node_modules/.bin/mocha example_output_mocha.js
-fi
-
 echo "DEBUG ENV: ${TRAVIS_JOB_NUMBER} ${TRAVIS_BUILD_NUMBER} ..."
 
 if [ "${TRAVIS_BUILD_NUMBER}.2" != "${TRAVIS_JOB_NUMBER}" ]; then
