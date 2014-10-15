@@ -1,9 +1,9 @@
 {
-    "$schema": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#",
+    "$schema": "http://uschema.github.io/json/strict.json#",
     "title": "JSON Schema to validate an API Validator request list",
     "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/requests.json#",
     "allOf": [
-        { "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/uniqueArray" },
+        { "$ref": "http://uschema.github.io/json/common.json#/definitions/uniqueArray" },
         {
             "items": {
                 "oneOf": [
@@ -79,7 +79,7 @@
         },
         "processed": {
             "allOf": [
-                { "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/uniqueArray" },
+                { "$ref": "http://uschema.github.io/json/common.json#/definitions/uniqueArray" },
                 {
                     "items": { "$ref": "#/definitions/request" }
                 },

@@ -1,5 +1,5 @@
 {
-    "$schema": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/definition",
+    "$schema": "http://uschema.github.io/json/strict.json#/definitions/definition",
     "title": "JSON Schema definitions to validate all YQL related thing",
     "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#",
     "definitions": {
@@ -34,23 +34,23 @@
                     "$ref": "http://json-schema.org/draft-04/schema#/definitions/positiveInteger"
                 },
                 "created": {
-                    "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/utctime"
+                    "$ref": "http://uschema.github.io/json/common.json#/definitions/utctime"
                 },
                 "lang": {
-                    "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/languageTag"
+                    "$ref": "http://uschema.github.io/json/common.json#/definitions/languageTag"
                 },
                 "diagnostics": {
                     "publiclyCallable": {
                         "enum": ["true", "false"]
                     },
                     "user-time": {
-                        "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/integerString"
+                        "$ref": "http://uschema.github.io/json/common.json#/definitions/integerString"
                     },
                     "service-time": {
-                        "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/integerString"
+                        "$ref": "http://uschema.github.io/json/common.json#/definitions/integerString"
                     },
                     "build-version": {
-                        "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/common.json#/definitions/version"
+                        "$ref": "http://uschema.github.io/json/common.json#/definitions/version"
                     }
                 },
                 "results": {
@@ -69,12 +69,12 @@
         },
         "strictYQLResultSchema": {
             "allOf": [
-                {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/allOfSchemas"},
+                {"$ref": "http://uschema.github.io/json/strict.json#/definitions/allOfSchemas"},
                 {"$ref": "#/definitions/refResults"},
                 {"properties": {
                     "allOf": {
                         "items": [
-                            {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/externalRef"},
+                            {"$ref": "http://uschema.github.io/json/strict.json#/definitions/externalRef"},
                             {"properties": {
                                 "$ref": {"enum": ["#/definitions/result"]}
                             }}
@@ -93,8 +93,8 @@
                     "properties": {
                         "results": {
                             "oneOf": [
-                                {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/arraySchema" },
-                                {"$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/objectSchema" }
+                                {"$ref": "http://uschema.github.io/json/strict.json#/definitions/arraySchema" },
+                                {"$ref": "http://uschema.github.io/json/strict.json#/definitions/objectSchema" }
                             ]
                         },
                         "result": {
@@ -122,7 +122,7 @@
                                                                     "required": ["results"],
                                                                     "properties": {
                                                                         "results": {
-                                                                            "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#/definitions/localRef"
+                                                                            "$ref": "http://uschema.github.io/json/strict.json#/definitions/localRef"
                                                                         }
                                                                     }
                                                                 }

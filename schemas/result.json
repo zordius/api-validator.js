@@ -1,7 +1,7 @@
 {
     "title": "JSON Schema to validate request result",
     "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/result.json#",
-    "$schema": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/strict.json#",
+    "$schema": "http://uschema.github.io/json/strict.json#",
     "required": ["input", "response", "body"],
     "type": "object",
     "properties": {
