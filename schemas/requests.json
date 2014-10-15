@@ -1,7 +1,7 @@
 {
     "$schema": "http://uschema.github.io/json/strict.json#",
     "title": "JSON Schema to validate an API Validator request list",
-    "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/requests.json#",
+    "id": "http://uschema.github.io/json/apivalidator.requests.json#",
     "allOf": [
         { "$ref": "http://uschema.github.io/json/common.json#/definitions/uniqueArray" },
         {
@@ -54,7 +54,7 @@
                     "$ref": "#/definitions/method"
                 },
                 "yql": {
-                    "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/yql.json#/definitions/statement"
+                    "$ref": "http://uschema.github.io/json/apivalidator.yql.json#/definitions/statement"
                 },
                 "yqlConfig": {
                     "$ref": "#/definitions/yqlConfig"

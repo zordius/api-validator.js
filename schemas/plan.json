@@ -1,7 +1,7 @@
 {
     "$schema": "http://uschema.github.io/json/strict.json#",
     "title": "JSON Schema to validate an API Validator plan",
-    "id": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/plan.json#",
+    "id": "http://uschema.github.io/json/apivalidator.plan.json#",
     "type": "object",
     "required": ["requestYaml", "planName"],
     "additionalProperties": false,
@@ -13,7 +13,7 @@
             "type": "string"
         },
         "requestConfig": {
-            "$ref": "https://raw.githubusercontent.com/zordius/api-validator.js/master/schemas/requests.json#/definitions/requestConfig"
+            "$ref": "http://uschema.github.io/json/apivalidator.requests.json#/definitions/requestConfig"
         },
         "schemaDir": {
             "type": "string"
