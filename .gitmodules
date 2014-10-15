@@ -1,0 +1,3 @@
+[submodule "schemas/uschema"]
+	path = schemas/uschema
+	url = https://github.com/USchema/json.git
