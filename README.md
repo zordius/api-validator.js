@@ -119,4 +119,4 @@ Good JSON Schema practices
 * Use `definitions` and `$ref` to decouple schema into many sub schemas
 * Reuse sub schemas
 
-Check <a href="schemas">boundled schemas</a> to see examples.
+Check <a href="https://github.com/USchema/json">boundled schemas</a> to see examples.
