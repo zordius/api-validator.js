@@ -34,9 +34,9 @@
     "build_dbg": "browserify api-validator.js -d -s APIValidator -o dist/apivalidator-dbg.js",
     "build_tst": "browserify test/test.js -x ../api-validator.js -o dist/browserTest.js",
     "build_min": "uglifyjs dist/apivalidator.js -c -o dist/apivalidator-min.js",
-    "coverage": "istanbul cover -- _mocha -R spec",
+    "coverage": "istanbul cover -- _mocha",
     "lint": "jshint api-validator.js",
-    "test": "mocha -R spec"
+    "test": "mocha"
   },
   "main": "./api-validator.js",
   "bin": {
