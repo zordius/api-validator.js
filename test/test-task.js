@@ -230,6 +230,15 @@ describe('Task.loadSchemas', function () {
             done();
         });
     });
+
+    it('should show number of loaded files when verbose 2', function (done) {
+        sinon.spy(console, 'warn');
+        AT.loadSchemas({verbose: 2, schemaDir: 'abc', schemas: {}}, function (R) {
+            assert.equal(' 1 JSON schema loaded from abc', console.warn.getCall(0).args[0]);
+            console.warn.restore();
+            done();
+        });
+    });
 });
 
 describe('Task.validatePlan', function () {
