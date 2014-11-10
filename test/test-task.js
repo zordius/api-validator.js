@@ -213,9 +213,9 @@ describe('Task.loadSchemas', function () {
             var I;
 
             for (I in R.schemas) {
+                delete R.schemas[I].id;
                 assert.deepEqual({
                     "$schema": "http://uschema.github.io/json/strict.json#",
-                    "id": "file:///Users/zordius/api-validator.js/abc/def/1.json",
                     "title": "OK"
                 }, R.schemas[I]);
             }
