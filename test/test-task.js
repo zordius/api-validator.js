@@ -34,7 +34,7 @@ var assert = require('chai').assert,
             'test.yaml': "- abc\n- def",
             abc: {
                def: {
-                   'a.abc': 'lalala'
+                   '1.json': '{"title": "OK", "$schema": "http://uschema.github.io/json/strict.json#"}'
                }
             },
             output: {}
@@ -207,10 +207,16 @@ describe('Task.loadSchemas', function () {
         });
     });
 
-    it('should load 1 schema file when config with schemaDir', function (done) {
+    it('should load 1 schema file can not pass validation when config with schemaDir', function (done) {
         AT.loadSchemas({schemaDir: 'abc', schemas: {}}, function(R) {
-            console.log(R);
-            assert.deepEqual({schemaDir: 'abc', schemas:{}, selfVerify:{}}, R);
+            assert.deepEqual({
+                "file:///Users/zordius/api-validator.js/abc/def/1.json": {
+                    "$schema": "http://uschema.github.io/json/strict.json#",
+                    "id": "file:///Users/zordius/api-validator.js/abc/def/1.json",
+                    "title": "OK"
+                }
+            }, R.schemas);
+            assert.equal(true, R.abort);
             done();
         });
     });
