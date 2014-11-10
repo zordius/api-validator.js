@@ -1,3 +1,5 @@
 requestYaml: test/yaml/yql_requests.yaml
 verbose: 2
 schemaDir: test/schemas/example
+requestConfig:
+  strictSSL: false
