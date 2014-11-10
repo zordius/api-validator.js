@@ -1,6 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
+    sinon = require('sinon'),
     fs = require('fs'),
     mockfs = require('mock-fs'),
     nock = require('nock'),
@@ -217,6 +218,15 @@ describe('Task.loadSchemas', function () {
                 }
             }, R.schemas);
             assert.equal(true, R.abort);
+            done();
+        });
+    });
+
+    it('should console.warn when verbose 2', function (done) {
+        sinon.spy(console, 'warn');
+        AT.loadSchemas({verbose: 2}, function (R) {
+            assert.equal(' (No schemaDir in the plan)', console.warn.getCall(0).args[0]);
+            console.warn.restore();
             done();
         });
     });
