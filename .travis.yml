@@ -5,7 +5,7 @@ node_js:
 script:
   - npm test
   - ./cmd.js test/yaml/example_yql_plan.yaml > results.json
-  - node_modules/.bin/mocha example_output_mocha.js
+  - "node_modules/.bin/mocha example_output_mocha.js || cat file_*.json"
   - ./travis.sh
 env:
   global:
