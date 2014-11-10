@@ -32,6 +32,11 @@ var assert = require('chai').assert,
     initMockFS = function () {
         mockfs({
             'test.yaml': "- abc\n- def",
+            abc: {
+               def: {
+                   'a.abc': 'lalala'
+               }
+            },
             output: {}
         });
     },
@@ -188,6 +193,26 @@ describe('Task.loadPlan', function () {
              assert.equal(true, C.abort);
              done();
          });
+    });
+});
+
+describe('Task.loadSchemas', function () {
+    before(initMockFS);
+    after(clearMockFS);
+
+    it('should load 0 schema file', function (done) {
+        AT.loadSchemas({schemas: {}}, function(R) {
+            assert.deepEqual({schemas:{}, selfVerify:{}}, R);
+            done();
+        });
+    });
+
+    it('should load 1 schema file when config with schemaDir', function (done) {
+        AT.loadSchemas({schemaDir: 'abc', schemas: {}}, function(R) {
+            console.log(R);
+            assert.deepEqual({schemaDir: 'abc', schemas:{}, selfVerify:{}}, R);
+            done();
+        });
     });
 });
 
