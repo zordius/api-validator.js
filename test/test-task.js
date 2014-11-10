@@ -210,13 +210,15 @@ describe('Task.loadSchemas', function () {
 
     it('should load 1 schema file can not pass validation when config with schemaDir', function (done) {
         AT.loadSchemas({schemaDir: 'abc', schemas: {}}, function(R) {
-            assert.deepEqual({
-                "file:///Users/zordius/api-validator.js/abc/def/1.json": {
+            var I;
+
+            for (I in R.schemas) {
+                assert.deepEqual({
                     "$schema": "http://uschema.github.io/json/strict.json#",
                     "id": "file:///Users/zordius/api-validator.js/abc/def/1.json",
                     "title": "OK"
-                }
-            }, R.schemas);
+                }, R.schemas[I]);
+            }
             assert.equal(true, R.abort);
             done();
         });
